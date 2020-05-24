@@ -1,0 +1,24 @@
+{
+  "ignoreDefinitionFiles": false,
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "extends": [
+    "tslint:latest",
+    "tslint-config-google",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "prettier": [
+      true,
+      {
+        "singleQuote": true,
+        "bracketSpacing": false,
+        "arrowParens": "avoid"
+      }
+    ],
+    "max-classes-per-file": false,
+    "no-console": false,
+    "ordered-imports": true
+  }
+}

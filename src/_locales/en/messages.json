@@ -1,0 +1,128 @@
+{
+  "extensionName": {
+    "message": "Snooze Pocket",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Snooze articles in Pocket to a later time",
+    "description": "Description of the extension."
+  },
+  "snoozeButtonInTheMorning": {
+    "message": "In the morning",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonThisEvening": {
+    "message": "This evening",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonTomorrowMorning": {
+    "message": "Tomorrow",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonThisWeekend": {
+    "message": "This weekend",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonNextWeekend": {
+    "message": "Next weekend",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonNextWeek": {
+    "message": "Next week",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonInOneQuarter": {
+    "message": "In 3 months",
+    "description": "Short snooze-button text."
+  },
+  "snoozeButtonInOneYear": {
+    "message": "In a year",
+    "description": "Short snooze-button text."
+  },
+  "toastCloseButton": {
+    "message": "Close",
+    "description": "Toast button to close the message."
+  },
+  "toastNotLoggedIn": {
+    "message": "Looks like you're not logged in with Pocket!",
+    "description": "Toast error message for when the user lost their log-in credentials."
+  },
+  "toastCannotUnsnooze": {
+    "message": "Cannot unsnooze. Are you offline?",
+    "description": "Toast error message for when unsnoozing an item failed."
+  },
+  "toastCannotSnooze": {
+    "message": "Cannot snooze. Are you offline?",
+    "description": "Toast error message for when snoozing an item failed."
+  },
+  "toastCannotSync": {
+    "message": "Cannot sync. Are you offline?",
+    "description": "Toast error message for when unsnoozing an item failed."
+  },
+  "panelButtonLogin": {
+    "message": "Log in with Pocket",
+    "description": "Panel log-in button text."
+  },
+  "panelTabAction": {
+    "message": "Snooze this tab",
+    "description": "Panel tab title for the snooze section."
+  },
+  "panelDateTimePickerPlaceholder": {
+    "message": "Or pick another time…",
+    "description": "Placeholder text for the date-time picker for snoozing."
+  },
+  "panelTabSnoozed": {
+    "message": "Snoozed list",
+    "description": "Panel tab title for the list of snoozed items."
+  },
+  "panelSyncButton": {
+    "message": "Sync",
+    "description": "Title text for the sync button on the snoozed list tab."
+  },
+  "panelNothingSnoozed": {
+    "message": "Nothing snoozed right now…",
+    "description": "Panel text informing the user that the list of snoozed items is empty."
+  },
+  "panelUnsnoozeButton": {
+    "message": "Unsnooze",
+    "description": "Button text to unsnooze an already snoozed item."
+  },
+  "panelSnoozeButton": {
+    "message": "Snooze",
+    "description": "Button text to snooze the active page with the chosen date-time."
+  },
+  "optionsAutoSave": {
+    "message": "Options are automatically saved.",
+    "description": "Text informing the user that options are automatically saved."
+  },
+  "optionsMorningTime": {
+    "message": "Morning time",
+    "description": "Label for choosing the morning time in the options page."
+  },
+  "optionsEveningTime": {
+    "message": "Evening time",
+    "description": "Label for choosing the morning time in the options page."
+  },
+  "optionsWeekendWeekStartDays": {
+    "message": "First day of the week and the weekend",
+    "description": "Label for choosing what days are the start of the week/weekend in the options page."
+  },
+  "optionsWeekendWeekStartCaption": {
+    "message": "Based on the Wikipedia article “Workweek and weekend”",
+    "description": "Label caption explaining where the list of weekdays and weekends comes from."
+  },
+  "optionsDaysOption": {
+    "message": "Weeks start on $WEEK$, weekends on $WEEKEND$",
+    "description": "Label for the above option.",
+    "placeholders": {
+      "week": {
+        "content": "$1",
+        "description": "Name of the first day of the week."
+      },
+      "weekend": {
+        "content": "$2",
+        "description": "Name of the first day of the weekend."
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "snooze-pocket",
+  "version": "1.0.0",
+  "description": "Snooze articles in Pocket to a later time",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielrozenberg/snooze-pocket"
+  },
+  "scripts": {
+    "test": "eslint src",
+    "build": "rm -rf dist/* && gulp build",
+    "watch": "rm -rf dist/* && gulp watch",
+    "clean": "rm -rf dist/*"
+  },
+  "author": "Daniel Rozenberg",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "1.8.29",
+    "filter-unique": "2.0.0",
+    "flatpickr": "4.6.3",
+    "photon-icons": "5.4.0",
+    "webextension-polyfill-ts": "0.19.0"
+  },
+  "devDependencies": {
+    "browserify": "16.5.1",
+    "gts": "2.0.2",
+    "gulp": "4.0.2",
+    "gulp-cli": "2.3.0",
+    "gulp-rename": "2.0.0",
+    "prettier": "2.0.5",
+    "tsify": "4.0.2",
+    "tslint": "6.1.2",
+    "tslint-config-google": "1.0.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-plugin-prettier": "2.3.0",
+    "typescript": "3.9.6",
+    "vinyl-source-stream": "2.0.0"
+  }
+}
