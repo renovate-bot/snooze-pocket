@@ -24,16 +24,19 @@ bar, and select a time to snooze a link.
 The “Snoozed list” tab in the extension lets you see all of your existing
 snoozed tabs and lets you unsnooze them immediately.
 
-Links will only be unsnoozed when Firefox is open and the extension is installed
-and active.
+Links will automatically show up at the top of your Pocket app when it's time.
+For this to happen, Firefox has to be open and the extension installed and
+active.
 
 ### How does it work?
 
 Behind the scenes, the extension simply adds the links to your Pocket account
 and immediately archives them with a `snoozed` label. The extension itself saves
-the time it should re-add the item (un-archive) it to the top of your list.
+the time it should re-add the link (un-archive), and syncs that information with
+your [Firefox Account](https://accounts.firefox.com/), if you use one and allow
+it to [sync extension data](about:preferences#sync).
 
-Because the items are in your Pocket account and are labeled, you can always
+Because the links are in your Pocket account and are labeled, you can always
 safely remove this extension and still find all of the links that you meant to
 read later!
 
