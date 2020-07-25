@@ -7,7 +7,7 @@
     "url": "https://github.com/danielrozenberg/snooze-pocket"
   },
   "scripts": {
-    "test": "eslint src",
+    "test": "tslint --project . && prettier --check .",
     "build": "rm -rf dist/* && gulp build",
     "watch": "rm -rf dist/* && gulp watch",
     "clean": "rm -rf dist/*"
