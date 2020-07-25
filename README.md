@@ -34,7 +34,7 @@ Behind the scenes, the extension simply adds the links to your Pocket account
 and immediately archives them with a `snoozed` label. The extension itself saves
 the time it should re-add the link (un-archive), and syncs that information with
 your [Firefox Account](https://accounts.firefox.com/), if you use one and allow
-it to [sync extension data](about:preferences#sync).
+it to sync extension data (Firefox Preferences → Sync).
 
 Because the links are in your Pocket account and are labeled, you can always
 safely remove this extension and still find all of the links that you meant to
