@@ -1,6 +1,4 @@
-> NOTE: this is still a work in progress :)
-
-# Snooze Pocket — links for later
+# ![logo](assets/icon-32.png) [Snooze Pocket](https://addons.mozilla.org/en-US/firefox/addon/snooze-pocket/) — links for later
 
 Are you an avid user of [Pocket](https://getpocket.com/)? Then you probably have
 those dozen links at the bottom of your list that have been there forever!
@@ -10,13 +8,34 @@ stuff to do for when your friend is coming to visit you. Maybe it's stuff about
 a new hobby that you don't have the time for right now.
 
 Whatever they are, if those “bottom links” bother you, _Snooze Pocket_ is the
-extension for you!
+Firefox extension for you!
 
-- TODO: landscape image of actions tab on the left, snoozed list on the right]
+![Image of actions tab](assets/actions-tab.png)
+![Image of snoozed list tab](assets/snoozed-list-tab.png)
 
 ## How do I use this?
 
-TODO
+After
+[installing the extension](https://addons.mozilla.org/en-US/firefox/addon/snooze-pocket/)
+on your Firefox, you will be asked to log in with Pocket. Once you approve the
+extension, click on the ![logo](assets/icon-16.png) clock icon in the location
+bar, and select a time to snooze a link.
+
+The “Snoozed list” tab in the extension lets you see all of your existing
+snoozed tabs and lets you unsnooze them immediately.
+
+Links will only be unsnoozed when Firefox is open and the extension is installed
+and active.
+
+### How does it work?
+
+Behind the scenes, the extension simply adds the links to your Pocket account
+and immediately archives them with a `snoozed` label. The extension itself saves
+the time it should re-add the item (un-archive) it to the top of your list.
+
+Because the items are in your Pocket account and are labeled, you can always
+safely remove this extension and still find all of the links that you meant to
+read later!
 
 ## Privacy
 
@@ -36,8 +55,3 @@ under [src/\_locales](src/_locales) with your language (or language and region)
 code. See MDN's documentation on
 [Internationalization](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales)
 for details.
-
-TODOs:
-
-- expand this README
-- Icon
