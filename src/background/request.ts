@@ -2,6 +2,7 @@
  * Network requests adapter with Pocket API.
  */
 import type {Browser} from 'webextension-polyfill-ts';
+import {PocketAuthenticationError, PocketRequestError} from '../errors';
 import type {
   AddItemRequest,
   AddItemResponse,
@@ -63,26 +64,35 @@ export async function pocketRequest(
     ...request.params,
   };
 
-  const response = await fetch(`https://getpocket.com/v3${request.path}`, {
-    body: JSON.stringify(params),
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'X-Accept': 'application/json',
-    },
-    method: 'POST',
-  });
+  let response: Response;
+  try {
+    response = await fetch(`https://getpocket.com/v3${request.path}`, {
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'X-Accept': 'application/json',
+      },
+      method: 'POST',
+    });
+  } catch (error) {
+    console.error('[pocketRequest] network fetch threw an error', error);
+    throw new PocketRequestError(error.message, '<in fetch()>');
+  }
+
   console.debug('[pocketRequest] response:', response);
   if (!response.ok) {
     let error: Error;
-    const xError = response.headers.get('X-Error') ?? '<unknown>';
+    const xError = response.headers.get('X-Error') ?? '<in response>';
     if (accessToken && response.status === 401) {
-      error = new Error(
-        `User is not authorized with Pocket: ${response.status} ${response.statusText} [${xError}]`
+      error = new PocketAuthenticationError(
+        `User's access token is not authorized with Pocket: ${response.status} ${response.statusText}`,
+        xError
       );
       await browser.storage.sync.remove('accessToken');
     } else {
-      error = new Error(
-        `Pocket API error: ${response.status} ${response.statusText} [${xError}]`
+      error = new PocketRequestError(
+        `Pocket API error: ${response.status} ${response.statusText}`,
+        xError
       );
     }
     console.error('[pocketRequest]', error.message);

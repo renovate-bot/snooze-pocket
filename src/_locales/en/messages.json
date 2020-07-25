@@ -44,7 +44,7 @@
     "description": "Toast button to close the message."
   },
   "toastNotLoggedIn": {
-    "message": "Looks like you're not logged in with Pocket!",
+    "message": "Looks like you've been logged out of Pocket. Please log back in!",
     "description": "Toast error message for when the user lost their log-in credentials."
   },
   "toastCannotUnsnooze": {

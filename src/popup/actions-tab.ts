@@ -182,7 +182,7 @@ async function snooze(url: string, untilTimestamp: number): Promise<void> {
     console.error('[snooze]', error);
     snoozingIcon.classList.remove('working');
     allowInteraction(true);
-    displayToast(browser.i18n.getMessage('toastCannotSnooze'));
+    displayToast(browser.i18n.getMessage('toastCannotSnooze'), error);
   }
 }
 

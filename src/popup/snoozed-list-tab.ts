@@ -73,6 +73,7 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
       '.unsnooze-button'
     ) as HTMLButtonElement;
     unsnoozeButton.addEventListener('click', async () => {
+      console.debug('[unsnoozeButton] clicked');
       unsnoozeButton.disabled = true;
       snoozedItem.classList.add('unsnoozing');
       try {
@@ -88,8 +89,8 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
             once: true,
           }
         );
-      } catch {
-        displayToast(browser.i18n.getMessage('toastCannotUnsnooze'));
+      } catch (error) {
+        displayToast(browser.i18n.getMessage('toastCannotUnsnooze'), error);
         unsnoozeButton.disabled = false;
       } finally {
         snoozedItem.classList.remove('unsnoozing');
@@ -107,17 +108,19 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
 /**
  * Syncs the snoozed items with the Pocket API.
  *
- * @param force true to force syncing regardless of how much time has passed
- *   since the last sync.
+ * @param userInvoked true to force syncing regardless of how much time has
+ *   passed since the last sync.
  */
-export async function sync(force: boolean): Promise<void> {
-  console.debug('[sync] called', {force});
+export async function sync(userInvoked: boolean): Promise<void> {
+  console.debug('[sync] called', {force: userInvoked});
   disableSyncButton();
   try {
-    await sendMessage({action: Actions.SYNC, force});
+    await sendMessage({action: Actions.SYNC, force: userInvoked});
   } catch (error) {
     console.error('[sync]', error);
-    displayToast(browser.i18n.getMessage('toastCannotSync'));
+    if (userInvoked) {
+      displayToast(browser.i18n.getMessage('toastCannotSync'), error);
+    }
   } finally {
     animationDelayedEnableSyncButton();
   }

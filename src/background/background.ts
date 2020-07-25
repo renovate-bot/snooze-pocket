@@ -5,6 +5,7 @@ import * as dayjs from 'dayjs';
 import * as calendar from 'dayjs/plugin/calendar'; // tslint:disable-line: no-submodule-imports
 import type {Browser, Runtime} from 'webextension-polyfill-ts';
 import {Actions} from '../enums';
+import {PocketRequestError} from '../errors';
 import type {BooleanMessage, Message, VoidMessage} from '../types/messages';
 import {createAlarmHandler} from './alarm';
 import {snooze, sync, unsnooze} from './api-actions';
@@ -21,11 +22,15 @@ dayjs.extend(calendar);
 function messageHandler(
   message: BooleanMessage,
   sender: Runtime.MessageSender
-): Promise<void>;
+): Promise<boolean>;
 function messageHandler(
   message: VoidMessage,
   sender: Runtime.MessageSender
-): Promise<boolean>;
+): Promise<void>;
+function messageHandler(
+  message: Message,
+  sender: Runtime.MessageSender
+): Promise<PocketRequestError>;
 
 /**
  * Message handler for browser.runtime.sendMessage messages from the popup page.
@@ -34,6 +39,7 @@ async function messageHandler(message: Message, sender: Runtime.MessageSender) {
   console.debug('[messageHandler] called', {message, sender});
   const tabId = sender.tab?.id!;
 
+  // Actions that do not require being logged in.
   switch (message.action) {
     case Actions.START_AUTHENTICATION:
       return startAuthentication();
@@ -44,15 +50,27 @@ async function messageHandler(message: Message, sender: Runtime.MessageSender) {
 
     case Actions.IS_AUTHENTICATED:
       return isAuthenticated();
+  }
 
-    case Actions.SYNC:
-      return sync(message.force);
+  // Actions that require being logged in.
+  try {
+    switch (message.action) {
+      case Actions.SYNC:
+        return await sync(message.force);
 
-    case Actions.SNOOZE:
-      return snooze(message.url, message.untilTimestamp);
+      case Actions.SNOOZE:
+        return await snooze(message.url, message.untilTimestamp);
 
-    case Actions.UNSNOOZE:
-      return unsnooze(message.itemId);
+      case Actions.UNSNOOZE:
+        return await unsnooze(message.itemId);
+    }
+  } catch (error) {
+    // Manually destruct this because Error objects are not passed properly.
+    return {
+      name: error.name,
+      message: error.message,
+      xError: error.xError,
+    };
   }
 }
 
