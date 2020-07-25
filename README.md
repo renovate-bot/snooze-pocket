@@ -1,10 +1,43 @@
-# Snooze Pocket — Snooze articles in Pocket for later
+> NOTE: this is still a work in progress :)
+
+# Snooze Pocket — links for later
+
+Are you an avid user of [Pocket](https://getpocket.com/)? Then you probably have
+those dozen links at the bottom of your list that have been there forever!
+
+Maybe it's for a concert that hasn't started selling tickets yet. Maybe it's
+stuff to do for when your friend is coming to visit you. Maybe it's stuff about
+a new hobby that you don't have the time for right now.
+
+Whatever they are, if those “bottom links” bother you, _Snooze Pocket_ is the
+extension for you!
+
+- TODO: landscape image of actions tab on the left, snoozed list on the right]
+
+## How do I use this?
+
+TODO
+
+## Privacy
+
+_Snooze Pocket_ respects your privacy! The extension does not collect any data
+on you. All of your data stays between you, your Firefox profile, and your
+Pocket account.
+
+## Contributions welcome!
+
+I'm developing this extension in my free time. Saying that, please report any
+issues and feature requests here on GitHub, or send me pull requests, and I'll
+try to get back to you as soon as possible!
+
+Another way to contibute is to help with translations. This just means copying
+the [messages.json](src/_locales/en/messages.json) file into another directory
+under [src/_locale] with your language (or language and region) code. See MDN's
+documentation on
+[Internationalization](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales)
+for details.
 
 TODOs:
 
-- expand this README Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-  esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-  non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- expand this README
+- Icon
