@@ -6,7 +6,7 @@ export type SnoozedItem = {
   url: string;
   title: string;
   untilTimestamp: number;
-}
+};
 
 declare type Settings = {
   morningHour: number;

@@ -13,19 +13,13 @@
   ],
   "content_scripts": [
     {
-      "matches": [
-        "https://getpocket.com/auth/verify/*"
-      ],
-      "js": [
-        "authentication-verifier.js"
-      ],
+      "matches": ["https://getpocket.com/auth/verify/*"],
+      "js": ["authentication-verifier.js"],
       "run_at": "document_start"
     }
   ],
   "background": {
-    "scripts": [
-      "background/background.js"
-    ],
+    "scripts": ["background/background.js"],
     "persistent": true
   },
   "options_ui": {
@@ -35,9 +29,7 @@
   "page_action": {
     "browser_style": false,
     "default_popup": "popup/popup.html",
-    "show_matches": [
-      "<all_urls>"
-    ]
+    "show_matches": ["<all_urls>"]
   },
   "default_locale": "en",
   "browser_specific_settings": {

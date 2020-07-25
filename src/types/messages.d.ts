@@ -14,7 +14,7 @@ declare type FinishAuthenticationMessage = {
 
 declare type IsAuthenticatedMessage = {
   action: Actions.IS_AUTHENTICATED;
-}
+};
 
 declare type SyncMessage = {
   action: Actions.SYNC;
@@ -39,6 +39,4 @@ declare type VoidMessage =
   | SnoozeMessage
   | SyncMessage
   | UnsnoozeMessage;
-declare type Message =
-  | BooleanMessage
-  | VoidMessage;
+declare type Message = BooleanMessage | VoidMessage;
