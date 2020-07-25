@@ -5,6 +5,10 @@
   "description": "__MSG_extensionDescription__",
   "author": "Daniel Rozenberg",
   "homepage_url": "https://github.com/danielrozenberg/snooze-pocket",
+  "icons": {
+    "48": "third_party/photon-icons/history-16.svg",
+    "96": "third_party/photon-icons/history-16.svg"
+  },
   "permissions": [
     "https://getpocket.com/v3/*",
     "activeTab",
@@ -28,6 +32,7 @@
   },
   "page_action": {
     "browser_style": false,
+    "default_icon": "third_party/photon-icons/history-16.svg",
     "default_popup": "popup/popup.html",
     "show_matches": ["<all_urls>"]
   },
