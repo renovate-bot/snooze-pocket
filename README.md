@@ -32,8 +32,8 @@ try to get back to you as soon as possible!
 
 Another way to contibute is to help with translations. This just means copying
 the [messages.json](src/_locales/en/messages.json) file into another directory
-under [src/_locale] with your language (or language and region) code. See MDN's
-documentation on
+under [src/\_locales](src/_locales) with your language (or language and region)
+code. See MDN's documentation on
 [Internationalization](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales)
 for details.
 
