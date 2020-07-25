@@ -44,8 +44,8 @@ read later!
 ## Privacy
 
 _Snooze Pocket_ respects your privacy! The extension does not collect any data
-on you. All of your data stays between you, your Firefox profile, and your
-Pocket account.
+on you. All of your data stays between you, your Firefox, and your Pocket
+account.
 
 ## Contributions welcome!
 
@@ -59,3 +59,22 @@ under [src/\_locales](src/_locales) with your language (or language and region)
 code. See MDN's documentation on
 [Internationalization](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales)
 for details.
+
+## License and credits
+
+_Snooze Pocket_ is licensed under an [ISC license](LICENSE).
+
+_Snooze Pocket_ uses the following software and media:
+
+- [Day.js](https://day.js.org/) — Copyright © 2018
+  [iamkun](https://github.com/iamkun)
+  ([MIT License](https://github.com/iamkun/dayjs/blob/dev/LICENSE))
+- [flatpickr](https://flatpickr.js.org/) — Copyright © 2017
+  [Gregory Petrosyan](https://github.com/chmln)
+  ([MIT License](https://github.com/flatpickr/flatpickr/blob/master/LICENSE.md))
+- [Photon Icons](https://github.com/FirefoxUX/photon-icons) — Copyright © 2018
+  [Mozilla](https://www.mozilla.org/en-CA/)
+  ([MPL-2.0 License](https://github.com/FirefoxUX/photon-icons/blob/master/LICENSE))
+- [photon-components-web](https://github.com/FirefoxUX/photon-components-web) —
+  Copyright © 2018 [Mozilla](https://www.mozilla.org/en-CA/)
+  ([MPL-2.0 License](https://github.com/FirefoxUX/photon-icons/blob/master/LICENSE))
