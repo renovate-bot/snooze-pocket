@@ -112,16 +112,16 @@
     "description": "Label caption explaining where the list of weekdays and weekends comes from."
   },
   "optionsDaysOption": {
-    "message": "Weeks start on $WEEK$, weekends on $WEEKEND$",
+    "message": "Weeks start on $WEEKDAY$, weekends on $WEEKEND$",
     "description": "Label for the above option.",
     "placeholders": {
-      "week": {
+      "weekday": {
         "content": "$1",
-        "description": "Name of the first day of the week."
+        "example": "Monday"
       },
       "weekend": {
         "content": "$2",
-        "description": "Name of the first day of the weekend."
+        "example": "Saturday"
       }
     }
   }
