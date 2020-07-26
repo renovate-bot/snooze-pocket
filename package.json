@@ -7,7 +7,7 @@
     "url": "https://github.com/danielrozenberg/snooze-pocket"
   },
   "scripts": {
-    "test": "tslint --project . && prettier --check .",
+    "test": "tslint --project . && prettier --check . && gulp build",
     "build": "rm -rf dist/* && gulp build",
     "watch": "rm -rf dist/* && gulp watch",
     "clean": "rm -rf dist/*"
