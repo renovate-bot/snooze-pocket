@@ -53,12 +53,13 @@ I'm developing this extension in my free time. Saying that, please report any
 issues and feature requests here on GitHub, or send me pull requests, and I'll
 try to get back to you as soon as possible!
 
-Another way to contibute is to help with translations. This just means copying
-the [messages.json](src/_locales/en/messages.json) file into another directory
-under [src/\_locales](src/_locales) with your language (or language and region)
-code. See MDN's documentation on
-[Internationalization](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales)
-for details.
+Another way to contibute is to help with translations. Either by sending a pull
+request with a new `messages.json` file as described in MDN's documentation on
+[Internationalization](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales),
+or by using the
+[Web Extension Translator](https://lusito.github.io/web-ext-translator?gh=https://github.com/danielrozenberg/snooze-pocket)
+online tool and submitting the translation on GitHub with the (→) right arrow
+button on the top.
 
 ## License and credits
 
