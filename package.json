@@ -15,14 +15,14 @@
   "author": "Daniel Rozenberg",
   "license": "ISC",
   "dependencies": {
-    "dayjs": "1.8.31",
+    "dayjs": "1.8.32",
     "filter-unique": "2.0.0",
-    "flatpickr": "4.6.3",
+    "flatpickr": "4.6.5",
     "photon-icons": "5.4.0",
     "webextension-polyfill-ts": "0.19.0"
   },
   "devDependencies": {
-    "browserify": "16.5.1",
+    "browserify": "16.5.2",
     "gts": "2.0.2",
     "gulp": "4.0.2",
     "gulp-cli": "2.3.0",
