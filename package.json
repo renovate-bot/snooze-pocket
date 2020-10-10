@@ -22,8 +22,8 @@
     "webextension-polyfill-ts": "0.20.0"
   },
   "devDependencies": {
-    "browserify": "16.5.2",
-    "gts": "2.0.2",
+    "browserify": "17.0.0",
+    "gts": "3.0.0",
     "gulp": "4.0.2",
     "gulp-cli": "2.3.0",
     "gulp-rename": "2.0.0",
