@@ -51,14 +51,11 @@ export function createAlarmHandler(onUnsnoozeCallback: () => Promise<void>) {
     }
 
     const nextUnsnoozeTimestamp = Math.min(
+      dayjs().add(6, 'hour').unix(),
       ...snoozedItems
         .filter(([, snoozedItem]) => snoozedItem.untilTimestamp > nowTimestamp)
         .map(([, {untilTimestamp}]) => untilTimestamp)
     );
-    if (isNaN(nextUnsnoozeTimestamp) || nextUnsnoozeTimestamp === Infinity) {
-      console.info('[browser.alarms.onAlarm] No items to unsnooze next.');
-      return;
-    }
 
     console.log(
       '[browser.alarms.onAlarm] Setting next unsnoozing action to',
