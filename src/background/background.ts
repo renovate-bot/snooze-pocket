@@ -83,4 +83,7 @@ browser.alarms.onAlarm.addListener(
 );
 
 // Unsnooze any items that should have been unsnoozed while we were offline.
-browser.alarms.create('unsnooze', {when: dayjs().valueOf()});
+// Delay by five minutes to allow Firefox Sync to retrieve any changes. This is
+// to avoid immediately unsnoozing items that have been snoozed on a different
+// device, but were then re-snoozed by the user.
+browser.alarms.create('unsnooze', {when: dayjs().add(5, 'minute').valueOf()});
