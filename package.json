@@ -15,7 +15,7 @@
   "author": "Daniel Rozenberg",
   "license": "ISC",
   "dependencies": {
-    "dayjs": "1.9.4",
+    "dayjs": "1.9.5",
     "filter-unique": "2.0.0",
     "flatpickr": "4.6.6",
     "photon-icons": "5.4.0",
