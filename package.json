@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "browserify": "17.0.0",
-    "gts": "3.0.3",
+    "gts": "3.1.0",
     "gulp": "4.0.2",
     "gulp-cli": "2.3.0",
     "gulp-rename": "2.0.0",
