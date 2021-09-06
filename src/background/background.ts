@@ -37,7 +37,6 @@ function messageHandler(
  */
 async function messageHandler(message: Message, sender: Runtime.MessageSender) {
   console.debug('[messageHandler] called', {message, sender});
-  const tabId = sender.tab?.id!;
 
   // Actions that do not require being logged in.
   switch (message.action) {
@@ -45,7 +44,7 @@ async function messageHandler(message: Message, sender: Runtime.MessageSender) {
       return startAuthentication();
 
     case Actions.FINISH_AUTHENTICATION:
-      browser.tabs.remove(tabId);
+      browser.tabs.remove(sender.tab!.id!);
       return finishAuthentication(message.code);
 
     case Actions.IS_AUTHENTICATED:
@@ -66,10 +65,18 @@ async function messageHandler(message: Message, sender: Runtime.MessageSender) {
     }
   } catch (error) {
     // Manually destruct this because Error objects are not passed properly.
+    if (error instanceof Error) {
+      return {
+        name: error.name,
+        message: error.message,
+        xError:
+          error instanceof PocketRequestError ? error.xError : '<unknown>',
+      };
+    }
     return {
-      name: error.name,
-      message: error.message,
-      xError: error.xError,
+      name: '<unknown>',
+      message: '<unknown>',
+      xError: '<unknown>',
     };
   }
 }

@@ -14,6 +14,16 @@ export class PocketRequestError extends Error {
   toString(): string {
     return `${this.name}: ${this.message} [${this.xError}]`;
   }
+
+  static fromCaught(error: unknown, xError = '<unknown>'): PocketRequestError {
+    if (error instanceof PocketRequestError) {
+      return error;
+    } else if (error instanceof Error) {
+      return new PocketRequestError(error.message, xError);
+    } else {
+      return new PocketRequestError('<unknown>', xError);
+    }
+  }
 }
 
 export class PocketAuthenticationError extends PocketRequestError {}

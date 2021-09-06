@@ -76,7 +76,7 @@ export async function pocketRequest(
     });
   } catch (error) {
     console.error('[pocketRequest] network fetch threw an error', error);
-    throw new PocketRequestError(error.message, '<in fetch()>');
+    throw PocketRequestError.fromCaught(error, '<in fetch()>');
   }
 
   console.debug('[pocketRequest] response:', response);
