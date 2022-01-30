@@ -2,8 +2,8 @@
  * Extension's options page script.
  */
 import dayjs = require('dayjs');
-import * as localizedFormat from 'dayjs/plugin/localizedFormat'; // tslint:disable-line: no-submodule-imports
-import type {Browser} from 'webextension-polyfill-ts';
+import * as localizedFormat from 'dayjs/plugin/localizedFormat';
+import type {Browser} from 'webextension-polyfill';
 import {localize} from '../localize';
 import {getSettings} from '../settings';
 
@@ -59,6 +59,9 @@ function createTimeOptions(
   }
 }
 
+/**
+ * Initializes the options page.
+ */
 async function initialize() {
   localize();
 

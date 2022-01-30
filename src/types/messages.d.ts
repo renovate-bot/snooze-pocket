@@ -32,11 +32,11 @@ declare type UnsnoozeMessage = {
   itemId: number;
 };
 
-declare type BooleanMessage = IsAuthenticatedMessage;
-declare type VoidMessage =
+export declare type BooleanMessage = IsAuthenticatedMessage;
+export declare type VoidMessage =
   | StartAuthenticationMessage
   | FinishAuthenticationMessage
   | SnoozeMessage
   | SyncMessage
   | UnsnoozeMessage;
-declare type Message = BooleanMessage | VoidMessage;
+export declare type Message = BooleanMessage | VoidMessage;

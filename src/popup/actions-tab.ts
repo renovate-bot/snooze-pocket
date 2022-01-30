@@ -2,10 +2,10 @@
  * Actions tab.
  */
 import * as dayjs from 'dayjs';
-import * as localizedFormat from 'dayjs/plugin/localizedFormat'; // tslint:disable-line: no-submodule-imports
+import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 import filterUnique from 'filter-unique';
-import type {FlatpickrFn} from 'flatpickr/dist/types/instance'; // tslint:disable-line: no-submodule-imports
-import type {Browser} from 'webextension-polyfill-ts';
+import type {FlatpickrFn} from 'flatpickr/dist/types/instance';
+import type {Browser} from 'webextension-polyfill';
 import {Actions} from '../enums';
 import {getSettings} from '../settings';
 import {sendMessage} from './message';
@@ -48,6 +48,7 @@ declare type SnoozeButton = {
  *
  * @param date the date to start from.
  * @param dayOfWeek the day of the week to advance to.
+ * @returns the date of the next day of the week.
  */
 function nextDayOfWeek(
   date: dayjs.Dayjs,
@@ -60,6 +61,7 @@ function nextDayOfWeek(
  * Creates a single snooze button.
  * @param until until when to snooze this item.
  * @param topText text to place on the top of the button.
+ * @returns a UI snooze button params object.
  */
 function createSnoozeButton(until: dayjs.Dayjs, topText: string): SnoozeButton {
   return {

@@ -1,7 +1,7 @@
 /**
  * Settings shim.
  */
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 import type {Settings} from './types/storage';
 
 declare const browser: Browser;

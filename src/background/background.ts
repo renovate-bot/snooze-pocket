@@ -2,8 +2,8 @@
  * Extension's background script.
  */
 import * as dayjs from 'dayjs';
-import * as calendar from 'dayjs/plugin/calendar'; // tslint:disable-line: no-submodule-imports
-import type {Browser, Runtime} from 'webextension-polyfill-ts';
+import * as calendar from 'dayjs/plugin/calendar';
+import type {Browser, Runtime} from 'webextension-polyfill';
 import {Actions} from '../enums';
 import {PocketRequestError} from '../errors';
 import type {BooleanMessage, Message, VoidMessage} from '../types/messages';
@@ -34,6 +34,9 @@ function messageHandler(
 
 /**
  * Message handler for browser.runtime.sendMessage messages from the popup page.
+ *
+ * @param message the message to handle.
+ * @param sender the popup sender.
  */
 async function messageHandler(message: Message, sender: Runtime.MessageSender) {
   console.debug('[messageHandler] called', {message, sender});

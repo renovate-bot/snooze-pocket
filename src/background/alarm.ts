@@ -2,7 +2,7 @@
  * Extension alarms (WebExtension's setTimeout/setInterval equialent) handler.
  */
 import * as dayjs from 'dayjs';
-import type {Alarms, Browser} from 'webextension-polyfill-ts';
+import type {Alarms, Browser} from 'webextension-polyfill';
 import {PocketRequestPath} from '../enums';
 import type {SnoozedItem} from '../types/storage';
 import {pocketRequest} from './request';
@@ -13,6 +13,7 @@ declare const browser: Browser;
  * Creates an alarm handler that unsnoozes Pocket items that are ready.
  *
  * @param onUnsnoozeCallback callback function to execute after unsnoozing.
+ * @return a new alarm handler function.
  */
 export function createAlarmHandler(onUnsnoozeCallback: () => Promise<void>) {
   return async (alarm: Alarms.Alarm) => {

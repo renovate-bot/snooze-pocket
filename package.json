@@ -7,7 +7,7 @@
     "url": "https://github.com/danielrozenberg/snooze-pocket"
   },
   "scripts": {
-    "test": "tslint --project . && prettier --check . && gulp build",
+    "test": "eslint . && prettier --check . && gulp build",
     "build": "rm -rf dist/* && gulp build",
     "watch": "rm -rf dist/* && gulp watch",
     "clean": "rm -rf dist/*"
@@ -18,21 +18,22 @@
     "dayjs": "1.10.7",
     "filter-unique": "2.0.0",
     "flatpickr": "4.6.9",
-    "photon-icons": "5.4.0",
-    "webextension-polyfill-ts": "0.26.0"
+    "photon-icons": "5.4.0"
   },
   "devDependencies": {
+    "@types/webextension-polyfill": "0.8.2",
+    "@typescript-eslint/eslint-plugin": "5.10.1",
+    "@typescript-eslint/parser": "5.10.1",
     "browserify": "17.0.0",
+    "eslint": "8.8.0",
+    "eslint-config-google": "0.14.0",
+    "eslint-config-prettier": "8.3.0",
     "gts": "3.1.0",
     "gulp": "4.0.2",
     "gulp-cli": "2.3.0",
     "gulp-rename": "2.0.0",
     "prettier": "2.5.1",
     "tsify": "5.0.4",
-    "tslint": "6.1.3",
-    "tslint-config-google": "1.0.1",
-    "tslint-config-prettier": "1.18.0",
-    "tslint-plugin-prettier": "2.3.0",
     "typescript": "4.5.5",
     "vinyl-source-stream": "2.0.0"
   }

@@ -1,7 +1,7 @@
 /**
  * Extension's popup page script.
  */
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 import {Actions} from '../enums';
 import {localize} from '../localize';
 import {setupActionTab} from './actions-tab';
@@ -15,6 +15,9 @@ declare const browser: Browser;
 
 const loginButton = byId('button-login') as HTMLButtonElement;
 
+/**
+ * Initializes the popup page.
+ */
 async function initialize(): Promise<void> {
   console.debug('[initialize] called');
 

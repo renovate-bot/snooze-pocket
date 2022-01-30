@@ -1,14 +1,14 @@
 /**
  * Types for values that are stored in the extension's storage.
  */
-export type SnoozedItem = {
+export declare type SnoozedItem = {
   itemId: string;
   url: string;
   title: string;
   untilTimestamp: number;
 };
 
-declare type Settings = {
+export declare type Settings = {
   morningHour: number;
   morningMinute: number;
   eveningHour: number;

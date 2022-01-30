@@ -52,6 +52,11 @@ task(
   series('build:thirdparty [flatpickr]', 'build:thirdparty [photon-icons]')
 );
 
+/**
+ * Generates a tsify subtask.
+ * @param entryFile to generate a tsify task for.
+ * @returns a gulp subtask.
+ */
 function _tsifySubTaskGenerator(entryFile) {
   const subTask = cb => {
     browserify({debug: _debug})

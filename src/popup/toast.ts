@@ -1,7 +1,9 @@
-import {browser} from 'webextension-polyfill-ts';
+import {Browser} from 'webextension-polyfill';
 import {PocketAuthenticationError, PocketRequestError} from '../errors';
 import {showAuthenticationPage} from './page';
 import {byId} from './shortcuts';
+
+declare const browser: Browser;
 
 const TOAST_DURATION = 8000;
 
@@ -43,6 +45,9 @@ export function displayToast(
   }, TOAST_DURATION);
 }
 
+/**
+ * Initializes the toast display.
+ */
 function initialize() {
   closeToastButton.addEventListener('click', () => {
     console.debug('[closeToastButton] clicked');

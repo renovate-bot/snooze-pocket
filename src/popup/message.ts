@@ -1,7 +1,7 @@
 /**
  * Messages sending helper.
  */
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 import {ERROR_BY_NAME, PocketRequestError} from '../errors';
 import type {BooleanMessage, Message, VoidMessage} from '../types/messages';
 
@@ -20,13 +20,13 @@ export async function sendMessage(message: Message) {
   console.debug('[sendMessage] called', {message});
   const response = await browser.runtime.sendMessage(message);
   if (response?.name in ERROR_BY_NAME) {
-    const errorType = ERROR_BY_NAME[response.name];
+    const ErrorType = ERROR_BY_NAME[response.name];
     console.error(
       '[sendMessage] background page returned an error:',
-      errorType,
+      ErrorType,
       response
     );
-    throw new errorType(response.message, response.xError);
+    throw new ErrorType(response.message, response.xError);
   }
   return response;
 }

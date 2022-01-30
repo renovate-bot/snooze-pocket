@@ -2,8 +2,8 @@
  * Snoozed list tab.
  */
 import * as dayjs from 'dayjs';
-import * as calendar from 'dayjs/plugin/calendar'; // tslint:disable-line: no-submodule-imports
-import type {Browser} from 'webextension-polyfill-ts';
+import * as calendar from 'dayjs/plugin/calendar';
+import type {Browser} from 'webextension-polyfill';
 import {Actions} from '../enums';
 import type {SnoozedItem} from '../types/storage';
 import {sendMessage} from './message';

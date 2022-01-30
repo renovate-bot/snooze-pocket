@@ -3,7 +3,7 @@
  * under https://getpocket.com/auth/verify/ (a URL that in itself does not
  * exist).
  */
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 import {Actions} from './enums';
 
 declare const browser: Browser;

@@ -2,7 +2,7 @@
  * Interactions with the Pocket API to snooze/unsnooze/sync snoozing.
  */
 import * as dayjs from 'dayjs';
-import type {Alarms, Browser} from 'webextension-polyfill-ts';
+import type {Alarms, Browser} from 'webextension-polyfill';
 import {PocketRequestPath} from '../enums';
 import {Item} from '../types/api';
 import {SnoozedItem} from '../types/storage';
@@ -17,6 +17,7 @@ const SYNC_INTERVAL = 3600; // 1h
  *
  * @param item from Pocket API.
  * @param untilTimestamp until when to snooze this item (seconds).
+ * @returns a SnoozedItem object.
  */
 function itemToSnoozed(item: Item, untilTimestamp: number): SnoozedItem {
   return {

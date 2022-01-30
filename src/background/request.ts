@@ -1,7 +1,7 @@
 /**
  * Network requests adapter with Pocket API.
  */
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 import {PocketAuthenticationError, PocketRequestError} from '../errors';
 import type {
   AddItemRequest,

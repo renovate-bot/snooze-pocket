@@ -1,7 +1,7 @@
 /**
  * Localization/internationalization helper.
  */
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 
 declare const browser: Browser;
 

@@ -1,11 +1,24 @@
 {
-  "extends": "./node_modules/gts/",
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
-  },
+  "extends": ["google", "prettier"],
   "env": {
     "browser": true,
+    "es2021": true,
     "webextensions": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireParamType": false,
+        "requireReturn": false,
+        "requireReturnType": false
+      }
+    ]
   }
 }

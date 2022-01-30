@@ -1,4 +1,4 @@
-import type {Browser} from 'webextension-polyfill-ts';
+import type {Browser} from 'webextension-polyfill';
 import {PocketRequestPath} from '../enums';
 import {pocketRequest} from './request';
 
