@@ -6,14 +6,12 @@ import {PocketAuthenticationError, PocketRequestError} from '../errors';
 import type {
   AddItemRequest,
   AddItemResponse,
-  ArchiveItemRequest,
-  ArchiveItemResponse,
   AuthenticateRequest,
   AuthenticateResponse,
   AuthorizeRequest,
   AuthorizeResponse,
-  ReaddItemRequest,
-  ReaddItemResponse,
+  ModifyRequest,
+  ModifyResponse,
   RetrieveItemsRequest,
   RetrieveItemsResponse,
 } from '../types/api';
@@ -31,12 +29,7 @@ export function pocketRequest(
 export function pocketRequest(
   request: AddItemRequest
 ): Promise<AddItemResponse>;
-export function pocketRequest(
-  request: ArchiveItemRequest
-): Promise<ArchiveItemResponse>;
-export function pocketRequest(
-  request: ReaddItemRequest
-): Promise<ReaddItemResponse>;
+export function pocketRequest(request: ModifyRequest): Promise<ModifyResponse>;
 export function pocketRequest(
   request: RetrieveItemsRequest
 ): Promise<RetrieveItemsResponse>;
@@ -51,8 +44,7 @@ export async function pocketRequest(
     | AuthenticateRequest
     | AuthorizeRequest
     | AddItemRequest
-    | ArchiveItemRequest
-    | ReaddItemRequest
+    | ModifyRequest
     | RetrieveItemsRequest
 ) {
   console.debug('[pocketRequest] called', {request});

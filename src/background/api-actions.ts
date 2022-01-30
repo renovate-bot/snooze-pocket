@@ -147,6 +147,16 @@ export async function unsnooze(itemId: number): Promise<void> {
           action: 'readd',
           item_id: String(itemId),
         },
+        {
+          action: 'tags_add',
+          item_id: String(itemId),
+          tags: 'unsnoozed',
+        },
+        {
+          action: 'tags_remove',
+          item_id: String(itemId),
+          tags: 'snoozed',
+        },
       ],
     },
   });

@@ -49,31 +49,37 @@ export declare type AddItemResponse = {
   item: Item;
 };
 
-export declare type ArchiveItemRequest = {
+declare type AbstractAction = {
+  action: string;
+  item_id: string;
+};
+
+declare type ModifyArchiveAction = AbstractAction & {
+  action: 'archive';
+};
+
+declare type ModifyReaddAction = AbstractAction & {
+  action: 'readd';
+};
+
+declare type AddRemoveTagsAction = AbstractAction & {
+  action: 'tags_add' | 'tags_remove';
+  tags: string;
+};
+
+type ModifyActions =
+  | ModifyArchiveAction
+  | ModifyReaddAction
+  | AddRemoveTagsAction;
+
+export declare type ModifyRequest = {
   path: PocketRequestPath.MODIFY;
   params: {
-    actions: Array<{
-      action: 'archive';
-      item_id: string;
-    }>;
+    actions: ModifyActions[];
   };
 };
 
-export declare type ArchiveItemResponse = {
-  status: '0' | '1';
-};
-
-export declare type ReaddItemRequest = {
-  path: PocketRequestPath.MODIFY;
-  params: {
-    actions: Array<{
-      action: 'readd';
-      item_id: string;
-    }>;
-  };
-};
-
-export declare type ReaddItemResponse = {
+export declare type ModifyResponse = {
   status: '0' | '1';
 };
 
