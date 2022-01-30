@@ -67,7 +67,7 @@ declare type AddRemoveTagsAction = AbstractAction & {
   tags: string;
 };
 
-type ModifyActions =
+export type ModifyActions =
   | ModifyArchiveAction
   | ModifyReaddAction
   | AddRemoveTagsAction;
@@ -86,9 +86,10 @@ export declare type ModifyResponse = {
 export declare type RetrieveItemsRequest = {
   path: PocketRequestPath.RETRIEVE;
   params: {
+    state?: 'unread' | 'archived' | 'all';
     tag: 'snoozed';
     detailsType: 'simple';
-    since: number;
+    since?: number;
   };
 };
 
