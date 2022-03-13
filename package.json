@@ -18,15 +18,15 @@
   "dependencies": {
     "dayjs": "1.10.8",
     "filter-unique": "2.0.0",
-    "flatpickr": "4.6.9",
+    "flatpickr": "4.6.11",
     "photon-icons": "5.4.0"
   },
   "devDependencies": {
     "@types/webextension-polyfill": "0.8.2",
-    "@typescript-eslint/eslint-plugin": "5.13.0",
-    "@typescript-eslint/parser": "5.13.0",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
+    "@typescript-eslint/parser": "5.14.0",
     "browserify": "17.0.0",
-    "eslint": "8.10.0",
+    "eslint": "8.11.0",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "8.5.0",
     "gts": "3.1.0",
