@@ -67,9 +67,9 @@
     "message": "Snooze this tab",
     "description": "Panel tab title for the snooze section."
   },
-  "panelDateTimePickerPlaceholder": {
+  "panelDatePickerPlaceholder": {
     "message": "Or pick another time…",
-    "description": "Placeholder text for the date-time picker for snoozing."
+    "description": "Placeholder text for the date picker for snoozing."
   },
   "panelTabSnoozed": {
     "message": "Snoozed list",
@@ -89,7 +89,7 @@
   },
   "panelSnoozeButton": {
     "message": "Snooze",
-    "description": "Button text to snooze the active page with the chosen date-time."
+    "description": "Button text to snooze the active page with the chosen date."
   },
   "optionsAutoSave": {
     "message": "Options are automatically saved.",

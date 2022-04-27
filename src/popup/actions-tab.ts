@@ -24,18 +24,14 @@ dayjs.extend(localizedFormat);
 
 const snoozingIcon = byId('snoozing-icon');
 
-const snoozeDateTimeInput = byId('snooze-date-time-input') as HTMLFormElement;
-const snoozeDateTimeSubmit = byId(
-  'snooze-date-time-submit'
-) as HTMLButtonElement;
+const snoozeDateInput = byId('snooze-date-input') as HTMLFormElement;
+const snoozeDateSubmit = byId('snooze-date-submit') as HTMLButtonElement;
 const snoozeButtonTemplate = byId(
   'snooze-button-template'
 ) as HTMLTemplateElement;
 
 const snoozeButtonsContainer = byId('snooze-buttons-container');
-const snoozeDateTimePicker = byId(
-  'snooze-date-time-picker'
-) as HTMLInputElement;
+const snoozeDatePicker = byId('snooze-date-picker') as HTMLInputElement;
 
 declare type SnoozeButton = {
   untilTimestamp: number;
@@ -152,7 +148,7 @@ async function createSnoozeButtons(): Promise<SnoozeButton[]> {
  * @param enabled whether to allow.
  */
 function allowInteraction(enabled: boolean): void {
-  snoozeDateTimePicker.disabled = !enabled;
+  snoozeDatePicker.disabled = !enabled;
   snoozeButtonsContainer.querySelectorAll('button').forEach(button => {
     button.disabled = !enabled;
   });
@@ -215,28 +211,27 @@ export async function setupActionTab(): Promise<void> {
       await snooze(url, untilTimestamp);
     });
 
-    snoozeDateTimeInput.before(snoozeButton);
+    snoozeDateInput.before(snoozeButton);
   }
 
-  const snoozeDateTimePickerInstance = flatpickr(snoozeDateTimePicker, {
-    enableTime: true,
+  const snoozeDatePickerInstance = flatpickr(snoozeDatePicker, {
+    enableTime: false,
     formatDate: (date: Date) => {
-      return dayjs(date).format('LLLL');
+      return dayjs(date).format('dddd, LL');
     },
-    minDate: Date.now(),
-    minuteIncrement: 30,
+    minDate: dayjs().add(1, 'day').format('YYYY-MM-DD'),
     onChange: (dates: Date[]) => {
-      snoozeDateTimeSubmit.disabled = !dates.length;
+      snoozeDateSubmit.disabled = !dates.length;
     },
     position: 'above',
   });
 
-  snoozeDateTimeSubmit.addEventListener('click', async event => {
-    console.debug('[snoozeDateTimeSubmit] clicked');
+  snoozeDateSubmit.addEventListener('click', async event => {
+    console.debug('[snoozeDateSubmit] clicked');
     event.stopPropagation();
-    const untilTimestamp = dayjs(
-      snoozeDateTimePickerInstance.selectedDates[0]
-    ).unix();
+    const untilTimestamp = dayjs(snoozeDatePickerInstance.selectedDates[0])
+      .startOf('day')
+      .unix();
     await snooze(url, untilTimestamp);
   });
 }

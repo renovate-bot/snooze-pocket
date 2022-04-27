@@ -120,14 +120,14 @@
       grid-template-columns: 1fr 1fr 1fr;
     }
 
-    #snooze-date-time-input {
+    #snooze-date-input {
       display: grid;
       gap: calc(4 * var(--baseline-grid));
       grid-column: span 3;
       grid-template-columns: 1fr 1fr 1fr;
     }
 
-    #snooze-date-time-picker {
+    #snooze-date-picker {
       grid-column: span 2;
     }
 
@@ -212,8 +212,7 @@
 <body>
   <div id="toast" class="card card--shadow hidden">
     <span id="text-toast"></span>
-    <button id="button-close-toast" class="button--ghost button--micro" data-i18n-attrs
-      data-i18n-attr-title="toastCloseButton" data-i18n-attr-aria-label="toastCloseButton">
+    <button id="button-close-toast" class="button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="toastCloseButton" data-i18n-attr-aria-label="toastCloseButton">
       <span class="icon"></span>
     </button>
   </div>
@@ -239,8 +238,7 @@
         </li>
         <li data-section-id="snoozed" class="tabset__tab">
           <span class="tabset__tab__handle">
-            <button id="button-sync" class="button--ghost button--micro" data-i18n-attrs
-              data-i18n-attr-title="panelSyncButton" data-i18n-attr-aria-label="panelSyncButton" disabled>
+            <button id="button-sync" class="button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelSyncButton" data-i18n-attr-aria-label="panelSyncButton" disabled>
               <span class="icon"></span>
             </button>
             <span data-i18n-message="panelTabSnoozed"></span>
@@ -251,10 +249,9 @@
 
     <section id="action">
       <div id="snooze-buttons-container">
-        <div id="snooze-date-time-input">
-          <input id="snooze-date-time-picker" class="input__field" type="datetime-local" data-i18n-attrs
-            data-i18n-attr-placeholder="panelDateTimePickerPlaceholder">
-          <button id="snooze-date-time-submit" class="button" data-i18n-message="panelSnoozeButton" disabled></button>
+        <div id="snooze-date-input">
+          <input id="snooze-date-picker" class="input__field" type="date" data-i18n-attrs data-i18n-attr-placeholder="panelDatePickerPlaceholder">
+          <button id="snooze-date-submit" class="button" data-i18n-message="panelSnoozeButton" disabled></button>
         </div>
       </div>
     </section>
@@ -278,8 +275,7 @@
         <span class="title-text"></span>
         <span class="snoozed-until-text"></span>
       </a>
-      <button class="unsnooze-button button--ghost button--micro" data-i18n-attrs
-        data-i18n-attr-title="panelUnsnoozeButton" data-i18n-attr-aria-label="panelUnsnoozeButton">
+      <button class="unsnooze-button button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelUnsnoozeButton" data-i18n-attr-aria-label="panelUnsnoozeButton">
         <span class="icon"></span>
       </button>
     </li>
