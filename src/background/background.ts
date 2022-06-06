@@ -8,7 +8,7 @@ import {Actions} from '../enums';
 import {PocketRequestError} from '../errors';
 import type {BooleanMessage, Message, VoidMessage} from '../types/messages';
 import {createAlarmHandler} from './alarm';
-import {snooze, sync, unsnooze} from './api-actions';
+import {archive, snooze, sync, unsnooze} from './api-actions';
 import {
   finishAuthentication,
   isAuthenticated,
@@ -65,6 +65,9 @@ async function messageHandler(message: Message, sender: Runtime.MessageSender) {
 
       case Actions.UNSNOOZE:
         return await unsnooze(message.itemId);
+
+      case Actions.ARCHIVE:
+        return await archive(message.itemId);
     }
   } catch (error) {
     // Manually destruct this because Error objects are not passed properly.

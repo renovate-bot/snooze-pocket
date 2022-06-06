@@ -83,6 +83,10 @@
     "message": "Nothing snoozed right now…",
     "description": "Panel text informing the user that the list of snoozed items is empty."
   },
+  "panelArchiveButton": {
+    "message": "Archive",
+    "description": "Button text to archive a snoozed item, removing it from the snooze queue."
+  },
   "panelUnsnoozeButton": {
     "message": "Unsnooze",
     "description": "Button text to unsnooze an already snoozed item."

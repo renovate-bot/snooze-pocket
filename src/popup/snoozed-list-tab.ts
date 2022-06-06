@@ -22,6 +22,65 @@ const snoozedItemTemplate = byId(
 ) as HTMLTemplateElement;
 
 /**
+ * Performs an unsnoozing action, either restoring or archiving the item.
+ *
+ * @param snoozedItem HTML element.
+ * @param itemId the ID of the item from Pocket API.
+ * @param action which action to perform.
+ */
+async function unsnoozeItem(
+  snoozedItem: HTMLLIElement,
+  itemId: number,
+  action: Actions.UNSNOOZE | Actions.ARCHIVE
+): Promise<void> {
+  const buttons = snoozedItem.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+  snoozedItem.classList.add('unsnoozing');
+  try {
+    await sendMessage({action, itemId: itemId});
+    snoozedItem.classList.add('unsnoozed');
+    snoozedItem.addEventListener(
+      'transitionend',
+      () => {
+        snoozedItem.remove();
+        noSnoozedItems.hidden = snoozedItemsList.children.length > 0;
+      },
+      {
+        once: true,
+      }
+    );
+  } catch (error) {
+    displayToast(browser.i18n.getMessage('toastCannotUnsnooze'), error);
+    buttons.forEach(button => {
+      button.disabled = false;
+    });
+  } finally {
+    snoozedItem.classList.remove('unsnoozing');
+  }
+}
+
+/**
+ * Get or create the snooze item element.
+ *
+ * @param itemId the ID of the item from Pocket API.
+ * @returns an HTML element.
+ */
+function getOrCreateSnoozeItemElement(itemId): HTMLLIElement {
+  const existing = snoozedItemsList.querySelector(`[data-item-id="${itemId}"]`);
+  if (existing) {
+    return existing as HTMLLIElement;
+  }
+
+  const created = snoozedItemTemplate.content
+    .querySelector('li')!
+    .cloneNode(true) as HTMLLIElement;
+  created.setAttribute('data-item-id', itemId);
+  return created;
+}
+
+/**
  * Sets up the snoozed list tab.
  *
  * @param maybeSyncAfter true to call sync() after setting up.
@@ -56,46 +115,25 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
 
   // Add/update all snoozed items to the list.
   for (const {itemId, url, title, untilTimestamp} of snoozedItems) {
-    const snoozedItem =
-      snoozedItemsList.querySelector(`[data-item-id="${itemId}"]`) ??
-      (snoozedItemTemplate.content
-        .querySelector('li')!
-        .cloneNode(true) as HTMLLIElement);
-    snoozedItem.setAttribute('data-item-id', itemId);
-
+    const snoozedItem = getOrCreateSnoozeItemElement(itemId);
     (snoozedItem.querySelector('.item-link') as HTMLAnchorElement).href = url;
     snoozedItem.querySelector('.title-text')!.textContent = title;
     snoozedItem.querySelector('.snoozed-until-text')!.textContent = dayjs
       .unix(untilTimestamp)
       .calendar();
 
-    const unsnoozeButton = snoozedItem.querySelector(
-      '.unsnooze-button'
-    ) as HTMLButtonElement;
-    unsnoozeButton.addEventListener('click', async () => {
-      console.debug('[unsnoozeButton] clicked');
-      unsnoozeButton.disabled = true;
-      snoozedItem.classList.add('unsnoozing');
-      try {
-        await sendMessage({action: Actions.UNSNOOZE, itemId: Number(itemId)});
-        snoozedItem.classList.add('unsnoozed');
-        snoozedItem.addEventListener(
-          'transitionend',
-          () => {
-            snoozedItem.remove();
-            noSnoozedItems.hidden = snoozedItemsList.children.length > 0;
-          },
-          {
-            once: true,
-          }
-        );
-      } catch (error) {
-        displayToast(browser.i18n.getMessage('toastCannotUnsnooze'), error);
-        unsnoozeButton.disabled = false;
-      } finally {
-        snoozedItem.classList.remove('unsnoozing');
-      }
-    });
+    snoozedItem
+      .querySelector('.archive-button')
+      .addEventListener('click', async () => {
+        console.debug('[archiveButton] clicked');
+        unsnoozeItem(snoozedItem, Number(itemId), Actions.ARCHIVE);
+      });
+    snoozedItem
+      .querySelector('.unsnooze-button')
+      .addEventListener('click', async () => {
+        console.debug('[unsnoozeButton] clicked');
+        unsnoozeItem(snoozedItem, Number(itemId), Actions.UNSNOOZE);
+      });
 
     snoozedItemsList.appendChild(snoozedItem);
   }

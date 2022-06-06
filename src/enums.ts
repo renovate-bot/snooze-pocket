@@ -9,6 +9,7 @@ export enum Actions {
   SYNC = 'sync',
   SNOOZE = 'snooze',
   UNSNOOZE = 'unsnooze',
+  ARCHIVE = 'archive',
 }
 
 export enum PocketRequestPath {

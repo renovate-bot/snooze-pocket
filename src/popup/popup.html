@@ -161,7 +161,7 @@
     .snoozed-item {
       align-items: center;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr auto auto;
       grid-template-rows: calc(6 * var(--baseline-grid));
       margin-bottom: .4em;
       overflow: hidden;
@@ -200,10 +200,17 @@
       font-weight: 400;
     }
 
-    .unsnooze-button span.icon {
-      background: url("/third_party/photon-icons/forget-16.svg") center no-repeat;
+    .button--micro span.icon {
       height: 16px;
       width: 16px;
+    }
+
+    .archive-button span.icon {
+      background: url("/third_party/photon-icons/close-16.svg") center no-repeat;
+    }
+
+    .unsnooze-button span.icon {
+      background: url("/third_party/photon-icons/forget-16.svg") center no-repeat;
     }
 
   </style>
@@ -275,6 +282,9 @@
         <span class="title-text"></span>
         <span class="snoozed-until-text"></span>
       </a>
+      <button class="archive-button button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelArchiveButton" data-i18n-attr-aria-label="panelArchiveButton">
+        <span class="icon"></span>
+      </button>
       <button class="unsnooze-button button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelUnsnoozeButton" data-i18n-attr-aria-label="panelUnsnoozeButton">
         <span class="icon"></span>
       </button>

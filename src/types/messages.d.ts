@@ -32,11 +32,17 @@ declare type UnsnoozeMessage = {
   itemId: number;
 };
 
+declare type ArchiveMessage = {
+  action: Actions.ARCHIVE;
+  itemId: number;
+};
+
 export declare type BooleanMessage = IsAuthenticatedMessage;
 export declare type VoidMessage =
   | StartAuthenticationMessage
   | FinishAuthenticationMessage
   | SnoozeMessage
   | SyncMessage
-  | UnsnoozeMessage;
+  | UnsnoozeMessage
+  | ArchiveMessage;
 export declare type Message = BooleanMessage | VoidMessage;

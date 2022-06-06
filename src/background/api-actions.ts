@@ -162,3 +162,25 @@ export async function unsnooze(itemId: number): Promise<void> {
   });
   await browser.storage.sync.remove([String(itemId)]);
 }
+
+/**
+ * Archives an item, removing it from the snooze queue.
+ *
+ * @param itemId the ID of the item to archive from Pocket API.
+ */
+export async function archive(itemId: number): Promise<void> {
+  console.debug('[archive] called', {itemId});
+  await pocketRequest({
+    path: PocketRequestPath.MODIFY,
+    params: {
+      actions: [
+        {
+          action: 'tags_remove',
+          item_id: String(itemId),
+          tags: 'snoozed',
+        },
+      ],
+    },
+  });
+  await browser.storage.sync.remove([String(itemId)]);
+}
