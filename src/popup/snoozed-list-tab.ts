@@ -9,6 +9,7 @@ import type {SnoozedItem} from '../types/storage';
 import {sendMessage} from './message';
 import {byId} from './shortcuts';
 import {animationDelayedEnableSyncButton, disableSyncButton} from './tabs';
+import {expandTemplate} from './template';
 import {displayToast} from './toast';
 
 declare const browser: Browser;
@@ -73,9 +74,7 @@ function getOrCreateSnoozeItemElement(itemId): HTMLLIElement {
     return existing as HTMLLIElement;
   }
 
-  const created = snoozedItemTemplate.content
-    .querySelector('li')!
-    .cloneNode(true) as HTMLLIElement;
+  const created = expandTemplate<HTMLLIElement>(snoozedItemTemplate);
   created.setAttribute('data-item-id', itemId);
   return created;
 }

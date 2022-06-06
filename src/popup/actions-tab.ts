@@ -10,6 +10,7 @@ import {Actions} from '../enums';
 import {getSettings} from '../settings';
 import {sendMessage} from './message';
 import {byId} from './shortcuts';
+import {expandTemplate} from './template';
 import {displayToast} from './toast';
 
 declare const browser: Browser;
@@ -200,9 +201,8 @@ export async function setupActionTab(): Promise<void> {
   const {url} = activeTabs[0];
 
   for (const {untilTimestamp, topText, buttomText} of snoozeButtons) {
-    const snoozeButton = snoozeButtonTemplate.content
-      .querySelector('button')!
-      .cloneNode(true) as HTMLButtonElement;
+    const snoozeButton =
+      expandTemplate<HTMLButtonElement>(snoozeButtonTemplate);
     snoozeButton.querySelector('.top-text')!.textContent = topText;
     snoozeButton.querySelector('.buttom-text')!.textContent = buttomText;
 
