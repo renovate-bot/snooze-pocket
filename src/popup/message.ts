@@ -24,7 +24,7 @@ export async function sendMessage(message: Message) {
     console.error(
       '[sendMessage] background page returned an error:',
       ErrorType,
-      response
+      response,
     );
     throw new ErrorType(response.message, response.xError);
   }

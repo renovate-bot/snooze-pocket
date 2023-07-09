@@ -26,7 +26,7 @@ let activeTimeout: number | undefined;
  */
 export function displayToast(
   message: string,
-  error?: PocketRequestError | unknown
+  error?: PocketRequestError | unknown,
 ): void {
   console.debug('[displayToast] called', {message, error});
   toastDiv.classList.remove('hidden');

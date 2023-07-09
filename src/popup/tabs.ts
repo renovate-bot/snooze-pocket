@@ -26,26 +26,26 @@ export function setupTabs() {
       for (const otherTab of tabs.filter(tab => tab !== clickedTab)) {
         otherTab.classList.remove('tabset__tab--selected');
         otherTab.firstElementChild?.classList.remove(
-          'tabset__tab--selected__handle'
+          'tabset__tab--selected__handle',
         );
         for (const button of otherTab.querySelectorAll('button')) {
           button.disabled = true;
         }
         document.getElementById(
-          otherTab.getAttribute('data-section-id')!
+          otherTab.getAttribute('data-section-id')!,
         )!.hidden = true;
       }
 
       clickedTab.classList.add('tabset__tab--selected');
       clickedTab.firstElementChild?.classList.add(
-        'tabset__tab--selected__handle'
+        'tabset__tab--selected__handle',
       );
       for (const button of clickedTab.querySelectorAll('button')) {
         // Should only be enabled if it's not currently pending.
         button.disabled = button.classList.contains('pending');
       }
       document.getElementById(
-        clickedTab.getAttribute('data-section-id')!
+        clickedTab.getAttribute('data-section-id')!,
       )!.hidden = false;
     });
   }
@@ -68,10 +68,10 @@ export function animationDelayedEnableSyncButton() {
     () => {
       // Should only be enabled if it's in the currently selected tab.
       syncButton.disabled = !syncButton.closest(
-        '.tabset__tab--selected__handle'
+        '.tabset__tab--selected__handle',
       );
       syncButton.classList.remove('pending');
     },
-    {once: true}
+    {once: true},
   );
 }

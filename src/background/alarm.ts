@@ -28,7 +28,7 @@ export function createAlarmHandler(onUnsnoozeCallback: UnsnoozeCallback) {
 
     const nowTimestamp = dayjs().unix();
     const snoozedItems: [string, SnoozedItem][] = Object.entries(
-      await browser.storage.sync.get()
+      await browser.storage.sync.get(),
     ).filter(([itemId]: [string, SnoozedItem]) => parseInt(itemId, 10));
 
     const localItemIdsToUnsnooze = snoozedItems
@@ -38,18 +38,18 @@ export function createAlarmHandler(onUnsnoozeCallback: UnsnoozeCallback) {
       console.log('[browser.alarms.onAlarm] No items to unsnooze');
       return await callbackAndResetAlarm(
         onUnsnoozeCallback,
-        dayjs().add(6, 'hour').unix()
+        dayjs().add(6, 'hour').unix(),
       );
     }
 
     const remoteItemIdsToUnsnooze = await getRemoteItemsToUnsnooze(
-      localItemIdsToUnsnooze
+      localItemIdsToUnsnooze,
     );
     if (remoteItemIdsToUnsnooze.length) {
       console.log(
         '[browser.alarms.onAlarm] Unsnoozing items',
         remoteItemIdsToUnsnooze,
-        'in Pocket'
+        'in Pocket',
       );
       await pocketRequest({
         path: PocketRequestPath.MODIFY,
@@ -59,7 +59,7 @@ export function createAlarmHandler(onUnsnoozeCallback: UnsnoozeCallback) {
       });
     } else {
       console.warn(
-        '[browser.alarms.onAlarm] No items left to unsnooze in Pocket'
+        '[browser.alarms.onAlarm] No items left to unsnooze in Pocket',
       );
     }
 
@@ -67,9 +67,9 @@ export function createAlarmHandler(onUnsnoozeCallback: UnsnoozeCallback) {
       console.warn(
         '[browser.alarms.onAlarm] Items',
         localItemIdsToUnsnooze.filter(
-          itemId => !remoteItemIdsToUnsnooze.includes(itemId)
+          itemId => !remoteItemIdsToUnsnooze.includes(itemId),
         ),
-        'have already been unsnoozed remotely and have been silently dropped'
+        'have already been unsnoozed remotely and have been silently dropped',
       );
     }
 
@@ -78,7 +78,7 @@ export function createAlarmHandler(onUnsnoozeCallback: UnsnoozeCallback) {
       dayjs().add(6, 'hour').unix(),
       ...snoozedItems
         .filter(([, snoozedItem]) => snoozedItem.untilTimestamp > nowTimestamp)
-        .map(([, {untilTimestamp}]) => untilTimestamp)
+        .map(([, {untilTimestamp}]) => untilTimestamp),
     );
     await callbackAndResetAlarm(onUnsnoozeCallback, nextUnsnoozeTimestamp);
   };
@@ -91,7 +91,7 @@ export function createAlarmHandler(onUnsnoozeCallback: UnsnoozeCallback) {
  * @returns subset of the input param that require remote unsnoozing.
  */
 async function getRemoteItemsToUnsnooze(
-  localItemIdsToUnsnooze: string[]
+  localItemIdsToUnsnooze: string[],
 ): Promise<string[]> {
   // Retrieve all currently archived and snoozed items from Pocket so we don't
   // accidentally unsnooze an item that was already unsnoozed before by a
@@ -108,11 +108,11 @@ async function getRemoteItemsToUnsnooze(
             detailsType: 'simple',
           },
         })
-      ).list
-    )
+      ).list,
+    ),
   );
   return localItemIdsToUnsnooze.filter(itemId =>
-    allArchivedSnoozedItemIds.has(itemId)
+    allArchivedSnoozedItemIds.has(itemId),
   );
 }
 
@@ -150,13 +150,13 @@ function generateUnsnoozingActions(itemId: string): ModifyActions[] {
  */
 async function callbackAndResetAlarm(
   onUnsnoozeCallback: UnsnoozeCallback,
-  nextUnsnoozeTimestamp: number
+  nextUnsnoozeTimestamp: number,
 ): Promise<void> {
   await onUnsnoozeCallback();
 
   console.log(
     '[browser.alarms.onAlarm] Setting next unsnoozing action to',
-    dayjs.unix(nextUnsnoozeTimestamp).format()
+    dayjs.unix(nextUnsnoozeTimestamp).format(),
   );
   browser.alarms.create('unsnooze', {when: nextUnsnoozeTimestamp * 1000});
 }

@@ -21,17 +21,17 @@ declare const browser: Browser;
 const CONSUMER_KEY = '92317-a9b11a7abf027884986ecd0d';
 
 export function pocketRequest(
-  request: AuthenticateRequest
+  request: AuthenticateRequest,
 ): Promise<AuthenticateResponse>;
 export function pocketRequest(
-  request: AuthorizeRequest
+  request: AuthorizeRequest,
 ): Promise<AuthorizeResponse>;
 export function pocketRequest(
-  request: AddItemRequest
+  request: AddItemRequest,
 ): Promise<AddItemResponse>;
 export function pocketRequest(request: ModifyRequest): Promise<ModifyResponse>;
 export function pocketRequest(
-  request: RetrieveItemsRequest
+  request: RetrieveItemsRequest,
 ): Promise<RetrieveItemsResponse>;
 
 /**
@@ -45,7 +45,7 @@ export async function pocketRequest(
     | AuthorizeRequest
     | AddItemRequest
     | ModifyRequest
-    | RetrieveItemsRequest
+    | RetrieveItemsRequest,
 ) {
   console.debug('[pocketRequest] called', {request});
   const {accessToken} = await browser.storage.sync.get({accessToken: null});
@@ -78,13 +78,13 @@ export async function pocketRequest(
     if (accessToken && response.status === 401) {
       error = new PocketAuthenticationError(
         `User's access token is not authorized with Pocket: ${response.status} ${response.statusText}`,
-        xError
+        xError,
       );
       await browser.storage.sync.remove('accessToken');
     } else {
       error = new PocketRequestError(
         `Pocket API error: ${response.status} ${response.statusText}`,
-        xError
+        xError,
       );
     }
     console.error('[pocketRequest]', error.message);

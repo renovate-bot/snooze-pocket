@@ -44,7 +44,7 @@ export async function startAuthentication(): Promise<void> {
   });
 
   console.debug(
-    '[startAuthentication] Waiting for user to accept/reject the authentication request'
+    '[startAuthentication] Waiting for user to accept/reject the authentication request',
   );
 }
 
@@ -65,7 +65,7 @@ export async function finishAuthentication(code: string): Promise<void> {
 
   console.debug(
     '[startAuthentication] User is now authenticated with Pocket as',
-    username
+    username,
   );
   await browser.storage.sync.set({accessToken, username});
 }

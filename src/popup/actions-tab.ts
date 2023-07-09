@@ -28,7 +28,7 @@ const snoozingIcon = byId('snoozing-icon');
 const snoozeDateInput = byId('snooze-date-input') as HTMLFormElement;
 const snoozeDateSubmit = byId('snooze-date-submit') as HTMLButtonElement;
 const snoozeButtonTemplate = byId(
-  'snooze-button-template'
+  'snooze-button-template',
 ) as HTMLTemplateElement;
 
 const snoozeButtonsContainer = byId('snooze-buttons-container');
@@ -49,7 +49,7 @@ declare type SnoozeButton = {
  */
 function nextDayOfWeek(
   date: dayjs.Dayjs,
-  dayOfWeek: 0 | 1 | 2 | 3 | 4 | 5 | 6
+  dayOfWeek: 0 | 1 | 2 | 3 | 4 | 5 | 6,
 ): dayjs.Dayjs {
   return date.add(((dayOfWeek - date.day() - 7) % 7) + 7, 'day');
 }
@@ -91,55 +91,55 @@ async function createSnoozeButtons(): Promise<SnoozeButton[]> {
     buttons.push(
       createSnoozeButton(
         now.hour(eveningHour).minute(eveningMinute),
-        browser.i18n.getMessage('snoozeButtonThisEvening')
-      )
+        browser.i18n.getMessage('snoozeButtonThisEvening'),
+      ),
     );
   } else if (now.hour() < DUSK_HOUR) {
     buttons.push(
       createSnoozeButton(
         morning,
-        browser.i18n.getMessage('snoozeButtonInTheMorning')
-      )
+        browser.i18n.getMessage('snoozeButtonInTheMorning'),
+      ),
     );
   }
 
   buttons.push(
     createSnoozeButton(
       morning.add(1, 'day'),
-      browser.i18n.getMessage('snoozeButtonTomorrowMorning')
-    )
+      browser.i18n.getMessage('snoozeButtonTomorrowMorning'),
+    ),
   );
 
   const weekend = nextDayOfWeek(morning, weekendDay);
   const topText = browser.i18n.getMessage(
     weekend.diff(morning, 'day') < (weekendDay - firstDayOfWeek + 7) % 7
       ? 'snoozeButtonThisWeekend'
-      : 'snoozeButtonNextWeekend'
+      : 'snoozeButtonNextWeekend',
   );
   buttons.push(createSnoozeButton(weekend, topText));
 
   buttons.push(
     createSnoozeButton(
       nextDayOfWeek(morning, firstDayOfWeek),
-      browser.i18n.getMessage('snoozeButtonNextWeek')
-    )
+      browser.i18n.getMessage('snoozeButtonNextWeek'),
+    ),
   );
   buttons.push(
     createSnoozeButton(
       morning.add(QUARTER_IN_MONTHS, 'month'),
-      browser.i18n.getMessage('snoozeButtonInOneQuarter')
-    )
+      browser.i18n.getMessage('snoozeButtonInOneQuarter'),
+    ),
   );
   buttons.push(
     createSnoozeButton(
       morning.add(1, 'year'),
-      browser.i18n.getMessage('snoozeButtonInOneYear')
-    )
+      browser.i18n.getMessage('snoozeButtonInOneYear'),
+    ),
   );
 
   return filterUnique(
     buttons.sort((left, right) => left.untilTimestamp - right.untilTimestamp),
-    button => button.untilTimestamp
+    button => button.untilTimestamp,
   );
 }
 

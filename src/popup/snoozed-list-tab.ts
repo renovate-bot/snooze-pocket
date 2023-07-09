@@ -19,7 +19,7 @@ dayjs.extend(calendar);
 const noSnoozedItems = byId('no-snoozed-items');
 const snoozedItemsList = byId('snoozed-items-list');
 const snoozedItemTemplate = byId(
-  'snoozed-item-template'
+  'snoozed-item-template',
 ) as HTMLTemplateElement;
 
 /**
@@ -32,7 +32,7 @@ const snoozedItemTemplate = byId(
 async function unsnoozeItem(
   snoozedItem: HTMLLIElement,
   itemId: number,
-  action: Actions.UNSNOOZE | Actions.ARCHIVE
+  action: Actions.UNSNOOZE | Actions.ARCHIVE,
 ): Promise<void> {
   const buttons = snoozedItem.querySelectorAll('button');
   buttons.forEach(button => {
@@ -50,7 +50,7 @@ async function unsnoozeItem(
       },
       {
         once: true,
-      }
+      },
     );
   } catch (error) {
     displayToast(browser.i18n.getMessage('toastCannotUnsnooze'), error);
@@ -92,7 +92,7 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
     .map(([, snoozedItem]: [any, SnoozedItem]) => snoozedItem)
     .sort((left, right) => left.untilTimestamp - right.untilTimestamp);
   const snoozedItemIds = new Set<string>(
-    snoozedItems.map(snoozedItem => snoozedItem.itemId)
+    snoozedItems.map(snoozedItem => snoozedItem.itemId),
   );
 
   // First, remove all items from the list that are no longer snoozed.
@@ -104,7 +104,7 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
       existingSnoozedItem.addEventListener(
         'transitionend',
         existingSnoozedItem.remove,
-        {once: true}
+        {once: true},
       );
     }
   }

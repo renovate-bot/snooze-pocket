@@ -26,7 +26,7 @@ task('build:thirdparty [flatpickr]', done => {
       'node_modules/flatpickr/dist/themes/dark.css',
       'node_modules/flatpickr/dist/themes/light.css',
     ],
-    {base: 'node_modules/flatpickr/dist'}
+    {base: 'node_modules/flatpickr/dist'},
   )
     .pipe(dest(() => 'dist/third_party/flatpickr'))
     .on('end', done);
@@ -41,7 +41,7 @@ task('build:thirdparty [photon-icons]', done => {
       'node_modules/photon-icons/icons/desktop/history-16.svg',
       'node_modules/photon-icons/icons/desktop/sync-16.svg',
     ],
-    {base: 'node_modules/photon-icons/icons/desktop'}
+    {base: 'node_modules/photon-icons/icons/desktop'},
   )
     .pipe(dest(() => 'dist/third_party/photon-icons'))
     .on('end', done);
@@ -49,7 +49,7 @@ task('build:thirdparty [photon-icons]', done => {
 
 task(
   'build:thirdparty',
-  series('build:thirdparty [flatpickr]', 'build:thirdparty [photon-icons]')
+  series('build:thirdparty [flatpickr]', 'build:thirdparty [photon-icons]'),
 );
 
 /**
@@ -75,7 +75,7 @@ function _tsifySubTaskGenerator(entryFile) {
             throw new Error(`Unexpected path object: ${path}`);
           }
           path.extname = '.js';
-        })
+        }),
       )
       .pipe(dest('dist'))
       .on('end', cb);
@@ -86,7 +86,7 @@ function _tsifySubTaskGenerator(entryFile) {
 
 _tsify = task('build:tsify', done => {
   parallel(...ENTRY_FILES.map(entryFile => _tsifySubTaskGenerator(entryFile)))(
-    done
+    done,
   );
 });
 
@@ -96,7 +96,7 @@ task('watch:static', () => {
   return watch(
     ['src/**/*', '!src/**/*.ts'],
     {ignoreInitial: false},
-    series('build:static')
+    series('build:static'),
   );
 });
 
@@ -104,7 +104,7 @@ task('watch:thirdparty', () => {
   return watch(
     ['node_modules/flatpickr/**/*', 'node_modules/photon-icons/**/*'],
     {ignoreInitial: false},
-    series('build:thirdparty')
+    series('build:thirdparty'),
   );
 });
 
@@ -113,7 +113,7 @@ task('watch:tsify', () => {
   return watch(
     ['src/**/*.ts', 'tsconfig.json'],
     {ignoreInitial: false},
-    series('build:tsify')
+    series('build:tsify'),
   );
 });
 

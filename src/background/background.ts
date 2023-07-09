@@ -21,15 +21,15 @@ dayjs.extend(calendar);
 
 function messageHandler(
   message: BooleanMessage,
-  sender: Runtime.MessageSender
+  sender: Runtime.MessageSender,
 ): Promise<boolean>;
 function messageHandler(
   message: VoidMessage,
-  sender: Runtime.MessageSender
+  sender: Runtime.MessageSender,
 ): Promise<void>;
 function messageHandler(
   message: Message,
-  sender: Runtime.MessageSender
+  sender: Runtime.MessageSender,
 ): Promise<PocketRequestError>;
 
 /**
@@ -92,7 +92,7 @@ browser.runtime.onMessage.addListener(messageHandler);
 browser.alarms.onAlarm.addListener(
   createAlarmHandler(() => {
     return sync(true);
-  })
+  }),
 );
 
 // Unsnooze any items that should have been unsnoozed while we were offline.

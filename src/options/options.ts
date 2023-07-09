@@ -43,7 +43,7 @@ function createTimeOptions(
   start: number,
   end: number,
   selectedHour: number,
-  selectedMinute: number
+  selectedMinute: number,
 ) {
   for (let hour = start; hour < end; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
@@ -72,7 +72,7 @@ async function initialize() {
     5,
     12,
     settings.morningHour,
-    settings.morningMinute
+    settings.morningMinute,
   );
   morningTimeSelect.addEventListener('input', () => {
     const [morningHour, morningMinute] = twoNumericValues(morningTimeSelect);
@@ -84,7 +84,7 @@ async function initialize() {
     16,
     24,
     settings.eveningHour,
-    settings.eveningMinute
+    settings.eveningMinute,
   );
   eveningTimeSelect.addEventListener('input', () => {
     const [eveningHour, eveningMinute] = twoNumericValues(eveningTimeSelect);

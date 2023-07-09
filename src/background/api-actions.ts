@@ -58,18 +58,18 @@ export async function sync(force: boolean): Promise<void> {
   // storage.
   const snoozedItemsInStorage = Object.fromEntries(
     Object.entries(await browser.storage.sync.get()).filter(
-      ([key]) => key in snoozedItemsInPocket
-    )
+      ([key]) => key in snoozedItemsInPocket,
+    ),
   ) as {[itemId: string]: SnoozedItem};
 
   // For each of the fetched items from Pocket, update it using the fetched item
   // from Pocket.
   for (const [itemId, {untilTimestamp}] of Object.entries(
-    snoozedItemsInStorage
+    snoozedItemsInStorage,
   )) {
     snoozedItemsInStorage[itemId] = itemToSnoozed(
       snoozedItemsInPocket[itemId],
-      untilTimestamp
+      untilTimestamp,
     );
   }
 
@@ -88,7 +88,7 @@ export async function sync(force: boolean): Promise<void> {
  */
 export async function snooze(
   url: string,
-  untilTimestamp: number
+  untilTimestamp: number,
 ): Promise<void> {
   console.debug('[snooze] called', {url, untilTimestamp});
   const {item} = await pocketRequest({
@@ -111,17 +111,17 @@ export async function snooze(
   });
 
   const unsnoozeAlarm: Alarms.Alarm | undefined = await browser.alarms.get(
-    'unsnooze'
+    'unsnooze',
   );
   if (!unsnoozeAlarm || untilTimestamp * 1000 < unsnoozeAlarm.scheduledTime) {
     console.log(
       '[snooze] Setting next unsnoozing action to',
-      dayjs.unix(untilTimestamp).format()
+      dayjs.unix(untilTimestamp).format(),
     );
     if (unsnoozeAlarm) {
       console.info(
         '[snooze] Previous unsnoozing was set to',
-        dayjs(unsnoozeAlarm.scheduledTime).format()
+        dayjs(unsnoozeAlarm.scheduledTime).format(),
       );
     }
     browser.alarms.create('unsnooze', {when: untilTimestamp * 1000});

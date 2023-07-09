@@ -16,7 +16,7 @@ export async function localize(root: HTMLElement = undefined): Promise<void> {
 
   for (const i18nElement of document.querySelectorAll('[data-i18n-message]')) {
     i18nElement.textContent = browser.i18n.getMessage(
-      i18nElement.getAttribute('data-i18n-message')!
+      i18nElement.getAttribute('data-i18n-message')!,
     );
   }
   for (const i18nElement of document.querySelectorAll('[data-i18n-attrs]')) {
