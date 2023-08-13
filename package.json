@@ -23,10 +23,10 @@
   },
   "devDependencies": {
     "@types/webextension-polyfill": "0.10.1",
-    "@typescript-eslint/eslint-plugin": "6.2.1",
-    "@typescript-eslint/parser": "6.2.1",
+    "@typescript-eslint/eslint-plugin": "6.3.0",
+    "@typescript-eslint/parser": "6.3.0",
     "browserify": "17.0.0",
-    "eslint": "8.46.0",
+    "eslint": "8.47.0",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "9.0.0",
     "gts": "5.0.0",
