@@ -110,9 +110,8 @@ export async function snooze(
     },
   });
 
-  const unsnoozeAlarm: Alarms.Alarm | undefined = await browser.alarms.get(
-    'unsnooze',
-  );
+  const unsnoozeAlarm: Alarms.Alarm | undefined =
+    await browser.alarms.get('unsnooze');
   if (!unsnoozeAlarm || untilTimestamp * 1000 < unsnoozeAlarm.scheduledTime) {
     console.log(
       '[snooze] Setting next unsnoozing action to',
