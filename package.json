@@ -22,9 +22,9 @@
     "photon-icons": "5.4.0"
   },
   "devDependencies": {
-    "@types/webextension-polyfill": "0.10.3",
-    "@typescript-eslint/eslint-plugin": "6.7.2",
-    "@typescript-eslint/parser": "6.7.2",
+    "@types/webextension-polyfill": "0.10.4",
+    "@typescript-eslint/eslint-plugin": "6.7.3",
+    "@typescript-eslint/parser": "6.7.3",
     "browserify": "17.0.0",
     "eslint": "8.50.0",
     "eslint-config-google": "0.14.0",
