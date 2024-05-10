@@ -16,15 +16,15 @@
   "author": "Daniel Rozenberg",
   "license": "ISC",
   "dependencies": {
-    "dayjs": "1.11.10",
+    "dayjs": "1.11.11",
     "filter-unique": "2.0.0",
     "flatpickr": "4.6.13",
     "photon-icons": "5.4.0"
   },
   "devDependencies": {
     "@types/webextension-polyfill": "0.10.7",
-    "@typescript-eslint/eslint-plugin": "7.7.1",
-    "@typescript-eslint/parser": "7.7.1",
+    "@typescript-eslint/eslint-plugin": "7.8.0",
+    "@typescript-eslint/parser": "7.8.0",
     "browserify": "17.0.0",
     "eslint": "8.57.0",
     "eslint-config-google": "0.14.0",
