@@ -103,7 +103,7 @@ async function getRemoteItemsToUnsnooze(
         await pocketRequest({
           path: PocketRequestPath.RETRIEVE,
           params: {
-            state: 'archived',
+            state: 'archive',
             tag: 'snoozed',
             detailsType: 'simple',
           },

@@ -86,7 +86,7 @@ export declare type ModifyResponse = {
 export declare type RetrieveItemsRequest = {
   path: PocketRequestPath.RETRIEVE;
   params: {
-    state?: 'unread' | 'archived' | 'all';
+    state?: 'unread' | 'archive' | 'all';
     tag: 'snoozed';
     detailsType: 'simple';
     since?: number;
