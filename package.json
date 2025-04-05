@@ -16,26 +16,26 @@
   "author": "Daniel Rozenberg",
   "license": "ISC",
   "dependencies": {
-    "dayjs": "1.11.11",
+    "dayjs": "1.11.13",
     "filter-unique": "2.0.0",
     "flatpickr": "4.6.13",
     "photon-icons": "5.4.0"
   },
   "devDependencies": {
-    "@types/webextension-polyfill": "0.10.7",
-    "@typescript-eslint/eslint-plugin": "7.9.0",
-    "@typescript-eslint/parser": "7.9.0",
-    "browserify": "17.0.0",
-    "eslint": "8.57.0",
+    "@types/webextension-polyfill": "0.12.3",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "browserify": "17.0.1",
+    "eslint": "8.57.1",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "9.1.0",
-    "gts": "5.3.0",
+    "gts": "5.3.1",
     "gulp": "4.0.2",
     "gulp-cli": "2.3.0",
     "gulp-rename": "2.0.0",
-    "prettier": "3.2.5",
+    "prettier": "3.5.3",
     "tsify": "5.0.4",
-    "typescript": "5.4.5",
+    "typescript": "5.8.3",
     "vinyl-source-stream": "2.0.0"
   }
 }
