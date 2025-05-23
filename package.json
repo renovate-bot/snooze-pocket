@@ -1,6 +1,6 @@
 {
   "name": "snooze-pocket",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Snooze articles in Pocket to a later time",
   "repository": {
     "type": "git",
@@ -18,7 +18,6 @@
   "dependencies": {
     "dayjs": "1.11.11",
     "filter-unique": "2.0.0",
-    "flatpickr": "4.6.13",
     "photon-icons": "5.4.0"
   },
   "devDependencies": {

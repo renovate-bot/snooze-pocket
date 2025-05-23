@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "__MSG_extensionDescription__",
   "author": "Daniel Rozenberg",
   "homepage_url": "https://github.com/danielrozenberg/snooze-pocket",
@@ -9,27 +9,7 @@
     "48": "third_party/photon-icons/history-16.svg",
     "96": "third_party/photon-icons/history-16.svg"
   },
-  "permissions": [
-    "https://getpocket.com/v3/*",
-    "activeTab",
-    "alarms",
-    "storage"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://getpocket.com/auth/verify/*"],
-      "js": ["authentication-verifier.js"],
-      "run_at": "document_start"
-    }
-  ],
-  "background": {
-    "scripts": ["background/background.js"],
-    "persistent": true
-  },
-  "options_ui": {
-    "browser_style": true,
-    "page": "options/options.html"
-  },
+  "permissions": ["activeTab", "storage"],
   "page_action": {
     "browser_style": false,
     "default_icon": "third_party/photon-icons/history-16.svg",

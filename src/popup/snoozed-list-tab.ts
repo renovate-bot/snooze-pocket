@@ -4,13 +4,9 @@
 import * as dayjs from 'dayjs';
 import * as calendar from 'dayjs/plugin/calendar';
 import type {Browser} from 'webextension-polyfill';
-import {Actions} from '../enums';
 import type {SnoozedItem} from '../types/storage';
-import {sendMessage} from './message';
 import {byId} from './shortcuts';
-import {animationDelayedEnableSyncButton, disableSyncButton} from './tabs';
 import {expandTemplate} from './template';
-import {displayToast} from './toast';
 
 declare const browser: Browser;
 
@@ -21,46 +17,6 @@ const snoozedItemsList = byId('snoozed-items-list');
 const snoozedItemTemplate = byId(
   'snoozed-item-template',
 ) as HTMLTemplateElement;
-
-/**
- * Performs an unsnoozing action, either restoring or archiving the item.
- *
- * @param snoozedItem HTML element.
- * @param itemId the ID of the item from Pocket API.
- * @param action which action to perform.
- */
-async function unsnoozeItem(
-  snoozedItem: HTMLLIElement,
-  itemId: number,
-  action: Actions.UNSNOOZE | Actions.ARCHIVE,
-): Promise<void> {
-  const buttons = snoozedItem.querySelectorAll('button');
-  buttons.forEach(button => {
-    button.disabled = true;
-  });
-  snoozedItem.classList.add('unsnoozing');
-  try {
-    await sendMessage({action, itemId: itemId});
-    snoozedItem.classList.add('unsnoozed');
-    snoozedItem.addEventListener(
-      'transitionend',
-      () => {
-        snoozedItem.remove();
-        noSnoozedItems.hidden = snoozedItemsList.children.length > 0;
-      },
-      {
-        once: true,
-      },
-    );
-  } catch (error) {
-    displayToast(browser.i18n.getMessage('toastCannotUnsnooze'), error);
-    buttons.forEach(button => {
-      button.disabled = false;
-    });
-  } finally {
-    snoozedItem.classList.remove('unsnoozing');
-  }
-}
 
 /**
  * Get or create the snooze item element.
@@ -81,11 +37,9 @@ function getOrCreateSnoozeItemElement(itemId): HTMLLIElement {
 
 /**
  * Sets up the snoozed list tab.
- *
- * @param maybeSyncAfter true to call sync() after setting up.
  */
-export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
-  console.debug('[setupSnoozedTab] called', {maybeSyncAfter});
+export async function setupSnoozedTab(): Promise<void> {
+  console.debug('[setupSnoozedTab] called');
 
   const snoozedItems = Object.entries(await browser.storage.sync.get())
     .filter(([itemId]) => parseInt(itemId, 10))
@@ -121,44 +75,6 @@ export async function setupSnoozedTab(maybeSyncAfter: boolean): Promise<void> {
       .unix(untilTimestamp)
       .calendar();
 
-    snoozedItem
-      .querySelector('.archive-button')
-      .addEventListener('click', async () => {
-        console.debug('[archiveButton] clicked');
-        unsnoozeItem(snoozedItem, Number(itemId), Actions.ARCHIVE);
-      });
-    snoozedItem
-      .querySelector('.unsnooze-button')
-      .addEventListener('click', async () => {
-        console.debug('[unsnoozeButton] clicked');
-        unsnoozeItem(snoozedItem, Number(itemId), Actions.UNSNOOZE);
-      });
-
     snoozedItemsList.appendChild(snoozedItem);
-  }
-
-  if (maybeSyncAfter) {
-    return sync(false);
-  }
-}
-
-/**
- * Syncs the snoozed items with the Pocket API.
- *
- * @param userInvoked true to force syncing regardless of how much time has
- *   passed since the last sync.
- */
-export async function sync(userInvoked: boolean): Promise<void> {
-  console.debug('[sync] called', {force: userInvoked});
-  disableSyncButton();
-  try {
-    await sendMessage({action: Actions.SYNC, force: userInvoked});
-  } catch (error) {
-    console.error('[sync]', error);
-    if (userInvoked) {
-      displayToast(browser.i18n.getMessage('toastCannotSync'), error);
-    }
-  } finally {
-    animationDelayedEnableSyncButton();
   }
 }

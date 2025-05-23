@@ -1,17 +1,6 @@
-import {Browser} from 'webextension-polyfill';
-import {PocketAuthenticationError, PocketRequestError} from '../errors';
-import {showAuthenticationPage} from './page';
 import {byId} from './shortcuts';
 
-declare const browser: Browser;
-
-const TOAST_DURATION = 8000;
-
-const toastDiv = byId('toast');
 const toastText = byId('text-toast');
-const closeToastButton = byId('button-close-toast');
-
-let activeTimeout: number | undefined;
 
 /**
  * Displays an error message in a toast.
@@ -22,37 +11,8 @@ let activeTimeout: number | undefined;
  * login page.
  *
  * @param message text to display.
- * @param error returned from the backend.
  */
-export function displayToast(
-  message: string,
-  error?: PocketRequestError | unknown,
-): void {
-  console.debug('[displayToast] called', {message, error});
-  toastDiv.classList.remove('hidden');
-
-  if (error instanceof PocketAuthenticationError) {
-    message = browser.i18n.getMessage('toastNotLoggedIn');
-    showAuthenticationPage();
-  }
+export function displayToast(message: string): void {
+  console.debug('[displayToast] called', {message});
   toastText.textContent = message;
-
-  closeToastButton.hidden = true;
-  clearTimeout(activeTimeout);
-  activeTimeout = setTimeout(() => {
-    console.debug('[setTimeout] callback invoked after', TOAST_DURATION, 'ms');
-    toastDiv.classList.add('hidden');
-  }, TOAST_DURATION);
 }
-
-/**
- * Initializes the toast display.
- */
-function initialize() {
-  closeToastButton.addEventListener('click', () => {
-    console.debug('[closeToastButton] clicked');
-    toastDiv.classList.add('hidden');
-  });
-}
-
-initialize();

@@ -27,124 +27,14 @@
 
     #toast {
       align-items: center;
+      background-color: var(--red-50);
+      color: var(--white-100);
       display: grid;
+      font-weight: bold;
       grid-template-columns: 1fr auto;
       margin-bottom: calc(4 * var(--baseline-grid));
-      max-height: 3em;
+      padding-block: calc(2 * var(--baseline-grid));
       transition: box-shadow 150ms, margin-bottom 800ms, max-height 800ms, opacity 800ms ease-out;
-    }
-
-    #toast.hidden {
-      margin-bottom: 0;
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-    }
-
-    nav {
-      padding-bottom: calc(6 * var(--baseline-grid));
-    }
-
-    .tabset__tab__handle {
-      line-height: calc(6 * var(--baseline-grid));
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    #button-close-toast span.icon {
-      background: url("/third_party/photon-icons/close-16.svg") center no-repeat;
-      height: 16px;
-      width: 16px;
-    }
-
-    #snoozing-icon {
-      background: url("/third_party/photon-icons/history-16.svg") center no-repeat;
-      display: inline-block;
-      height: 16px;
-      margin-inline-end: var(--baseline-grid);
-      opacity: .4;
-      vertical-align: text-bottom;
-      width: 16px;
-    }
-
-    #snoozing-icon.success {
-      background-image: url("/third_party/photon-icons/check-16.svg");
-    }
-
-    @keyframes working {
-      from {
-        opacity: .8;
-        filter: blur(0);
-      }
-
-      to {
-        opacity: .4;
-        filter: blur(1px);
-      }
-    }
-
-    #snoozing-icon.working {
-      animation: working 400ms ease-in-out infinite alternate;
-    }
-
-    .tabset__tab--selected__handle #snoozing-icon {
-      opacity: 1;
-    }
-
-    #button-sync {
-      vertical-align: sub;
-    }
-
-    #button-sync span.icon {
-      animation: spin 800ms linear infinite backwards paused;
-      background: url("/third_party/photon-icons/sync-16.svg") center no-repeat;
-      height: 16px;
-      width: 16px;
-    }
-
-    #button-sync.pending span.icon {
-      animation-play-state: running;
-    }
-
-    #snooze-buttons-container {
-      display: grid;
-      gap: calc(4 * var(--baseline-grid));
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    #snooze-date-input {
-      display: grid;
-      gap: calc(4 * var(--baseline-grid));
-      grid-column: span 3;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    #snooze-date-picker {
-      grid-column: span 2;
-    }
-
-    .snooze-button {
-      display: flex;
-      flex-flow: column;
-      gap: 1em;
-      padding: 50% 0;
-    }
-
-    .snooze-button .top-text {
-      font-size: var(--title-20);
-      font-weight: 500;
-    }
-
-    .snooze-button .buttom-text {
-      color: var(--grey-50);
     }
 
     #snoozed-items-list {
@@ -167,15 +57,6 @@
       overflow: hidden;
       padding-inline-end: calc(2 * var(--baseline-grid));
       transition: grid-template-rows 200ms, opacity 200ms ease-out;
-    }
-
-    .snoozed-item.unsnoozing {
-      opacity: .5;
-    }
-
-    .snoozed-item.unsnoozed {
-      grid-template-rows: 0;
-      opacity: 0;
     }
 
     .snoozed-item .item-link {
@@ -204,77 +85,20 @@
       height: 16px;
       width: 16px;
     }
-
-    .archive-button span.icon {
-      background: url("/third_party/photon-icons/close-16.svg") center no-repeat;
-    }
-
-    .unsnooze-button span.icon {
-      background: url("/third_party/photon-icons/forget-16.svg") center no-repeat;
-    }
-
   </style>
 </head>
 
 <body>
-  <div id="toast" class="card card--shadow hidden">
+  <div id="toast" class="card card--shadow">
     <span id="text-toast"></span>
-    <button id="button-close-toast" class="button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="toastCloseButton" data-i18n-attr-aria-label="toastCloseButton">
-      <span class="icon"></span>
-    </button>
   </div>
 
-  <section id="authenticate" hidden>
-    <header>
-      <h1 data-i18n-message="extensionName"></h1>
-    </header>
-
-    <div class="buttons-container">
-      <button id="button-login" class="button--puffy button--primary" data-i18n-message="panelButtonLogin"></button>
-    </div>
-  </section>
-
-  <section id="interface" hidden>
-    <nav>
-      <ul class="tabset" id="tabset">
-        <li data-section-id="action" class="tabset__tab tabset__tab--selected">
-          <span class="tabset__tab__handle tabset__tab--selected__handle">
-            <span id="snoozing-icon" class="icon"></span>
-            <span data-i18n-message="panelTabAction"></span>
-          </span>
-        </li>
-        <li data-section-id="snoozed" class="tabset__tab">
-          <span class="tabset__tab__handle">
-            <button id="button-sync" class="button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelSyncButton" data-i18n-attr-aria-label="panelSyncButton" disabled>
-              <span class="icon"></span>
-            </button>
-            <span data-i18n-message="panelTabSnoozed"></span>
-          </span>
-        </li>
-      </ul>
-    </nav>
-
-    <section id="action">
-      <div id="snooze-buttons-container">
-        <div id="snooze-date-input">
-          <input id="snooze-date-picker" class="input__field" type="date" data-i18n-attrs data-i18n-attr-placeholder="panelDatePickerPlaceholder">
-          <button id="snooze-date-submit" class="button" data-i18n-message="panelSnoozeButton" disabled></button>
-        </div>
-      </div>
-    </section>
-
-    <section id="snoozed" hidden>
+  <section id="interface">
+    <section id="snoozed">
       <p id="no-snoozed-items" hidden data-i18n-message="panelNothingSnoozed"></p>
       <ul id="snoozed-items-list"></ul>
     </section>
   </section>
-
-  <template id="snooze-button-template">
-    <button class="snooze-button">
-      <span class="top-text"></span>
-      <span class="buttom-text"></span>
-    </button>
-  </template>
 
   <template id="snoozed-item-template">
     <li class="snoozed-item card card--shadow">
@@ -282,17 +106,10 @@
         <span class="title-text"></span>
         <span class="snoozed-until-text"></span>
       </a>
-      <button class="archive-button button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelArchiveButton" data-i18n-attr-aria-label="panelArchiveButton">
-        <span class="icon"></span>
-      </button>
-      <button class="unsnooze-button button--ghost button--micro" data-i18n-attrs data-i18n-attr-title="panelUnsnoozeButton" data-i18n-attr-aria-label="panelUnsnoozeButton">
-        <span class="icon"></span>
-      </button>
     </li>
   </template>
 
   <script src="/popup/popup.js"></script>
-  <script src="/third_party/flatpickr/flatpickr.min.js"></script>
 </body>
 
 </html>
